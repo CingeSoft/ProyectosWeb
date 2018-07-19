@@ -1,0 +1,79 @@
+﻿@model CingeWeb.Models.Compañia
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Modificar</h2>
+
+<h4>Compañia</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdCompañia" />
+            <div class="form-group">
+                <label asp-for="NombreCompañia" class="control-label"></label>
+                <input asp-for="NombreCompañia" class="form-control" />
+                <span asp-validation-for="NombreCompañia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fax" class="control-label"></label>
+                <input asp-for="Fax" class="form-control" />
+                <span asp-validation-for="Fax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApartadoPostal" class="control-label"></label>
+                <input asp-for="ApartadoPostal" class="form-control" />
+                <span asp-validation-for="ApartadoPostal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion" class="control-label"></label>
+                <input asp-for="Direccion" class="form-control" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CedulaJuridica" class="control-label"></label>
+                <input asp-for="CedulaJuridica" class="form-control" />
+                <span asp-validation-for="CedulaJuridica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Correo" class="control-label"></label>
+                <input asp-for="Correo" class="form-control" />
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaginaWeb" class="control-label"></label>
+                <input asp-for="PaginaWeb" class="form-control" />
+                <span asp-validation-for="PaginaWeb" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FacturaElectronica" class="control-label"></label>
+                <input asp-for="FacturaElectronica" class="form-control" />
+                <span asp-validation-for="FacturaElectronica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DireccionLogo" class="control-label"></label>
+                <input asp-for="DireccionLogo" class="form-control" />
+                <span asp-validation-for="DireccionLogo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Modificar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

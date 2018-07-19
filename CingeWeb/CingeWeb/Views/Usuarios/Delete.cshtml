@@ -1,0 +1,57 @@
+﻿@model CingeWeb.Models.Usuarios
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Registro de Usuarios</h2>
+
+<h3>Esta Seguro de Borrar Registro?</h3>
+<div>
+    <h4>Usuarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreUsuario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreUsuario)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Contraseñas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contraseñas)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UltimoLogeo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UltimoLogeo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdRolNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdRolNavigation.IdRol)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Usuario" />
+        <input type="submit" value="Borrar" class="btn btn-default" /> |
+        <a asp-action="Index">Regresar</a>
+    </form>
+</div>

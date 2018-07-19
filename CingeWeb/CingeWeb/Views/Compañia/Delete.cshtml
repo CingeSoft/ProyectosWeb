@@ -1,0 +1,81 @@
+﻿@model CingeWeb.Models.Compañia
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Borrar</h2>
+
+<h3>Esta seguro de borrar registro?</h3>
+<div>
+    <h4>Compañia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreCompañia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreCompañia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApartadoPostal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApartadoPostal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CedulaJuridica)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CedulaJuridica)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Correo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Correo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PaginaWeb)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PaginaWeb)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FacturaElectronica)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FacturaElectronica)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DireccionLogo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DireccionLogo)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdCompañia" />
+        <input type="submit" value="Borrar" class="btn btn-default" /> |
+        <a asp-action="Index">Regresar</a>
+    </form>
+</div>

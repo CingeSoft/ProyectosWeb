@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CingeWeb.Models.Usuarios>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Mantenimientos Usuarios</h2>
+<hr />
+
+<p>
+    <a asp-action="Create">Crear Usuario</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contraseñas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UltimoLogeo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRolNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contraseñas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UltimoLogeo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdRolNavigation.IdRol)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Usuario">Modificar</a> |
+                <a asp-action="Details" asp-route-id="@item.Usuario">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.Usuario">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

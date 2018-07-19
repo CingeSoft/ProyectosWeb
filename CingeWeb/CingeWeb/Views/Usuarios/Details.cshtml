@@ -1,0 +1,54 @@
+﻿@model CingeWeb.Models.Usuarios
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalle de Registro</h2>
+
+<div>
+    <h4>Usuarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreUsuario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreUsuario)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Contraseñas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contraseñas)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UltimoLogeo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UltimoLogeo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdRolNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdRolNavigation.IdRol)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Usuario">Modificar</a> |
+    <a asp-action="Index">Regresar</a>
+</div>
