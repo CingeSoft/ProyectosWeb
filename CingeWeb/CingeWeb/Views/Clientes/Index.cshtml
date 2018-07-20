@@ -1,0 +1,91 @@
+﻿@model IEnumerable<CingeWeb.Models.Clientes>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 align="center">Mantenimiento de Clientes</h1>
+<hr border-style:inset />
+
+<p>
+    <a asp-action="Create">Crear Cliente</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Localidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cédula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TelefonoCodigoArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Teléfono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dirección)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacíon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CódigoCédulaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CódigoZonaNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Localidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cédula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TelefonoCodigoArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Teléfono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dirección)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCreacíon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CódigoCédulaNavigation.CódigoCédula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CódigoZonaNavigation.CódigoZona)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Código">Modificar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Código">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Código">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

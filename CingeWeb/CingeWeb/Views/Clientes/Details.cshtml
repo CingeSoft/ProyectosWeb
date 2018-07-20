@@ -1,0 +1,78 @@
+﻿@model CingeWeb.Models.Clientes
+
+@{
+    ViewData["Title"] = "Details";
+}
+<h1 align="center">Detalles del Cliente</h1>
+<hr border-style:inset />
+
+<div>
+    <h4>Clientes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Localidad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Localidad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cédula)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cédula)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefonoCodigoArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TelefonoCodigoArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Teléfono)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Teléfono)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dirección)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dirección)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCreacíon)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaCreacíon)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CódigoCédulaNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CódigoCédulaNavigation.CódigoCédula)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CódigoZonaNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CódigoZonaNavigation.CódigoZona)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Código">Modificar</a> |
+    <a asp-action="Index">Regresar</a>
+</div>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CingeWeb.Models.Cedulas>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 align="center">Mantenimiento de Cédulas</h1>
+<hr border-style:inset />
+<p>
+    <a asp-action="Create">Crear Cédula</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cédula)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cédula)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CódigoCédula">Modificar</a> |
+                    <a asp-action="Details" asp-route-id="@item.CódigoCédula">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CódigoCédula">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<CingeWeb.Models.Articulos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 align="center">Mantenimiento de Artículos</h1>
+<hr border-style:inset />
+<p>
+    <a asp-action="Create">Crear Artículo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CostoPromedio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MargenUtilida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioVenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PagaImpuesto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacíon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CódigoUnidadNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoArticuloNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostoPromedio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MargenUtilida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioVenta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PagaImpuesto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCreacíon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CódigoUnidadNavigation.CódigoUnidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoArticuloNavigation.TipoArticulo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Código">Modificar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Código">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Código">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

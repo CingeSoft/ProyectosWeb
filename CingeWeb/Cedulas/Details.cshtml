@@ -1,0 +1,24 @@
+﻿@model CingeWeb.Models.Cedulas
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalles de la Cédula</h2>
+
+<div>
+    <h4>Cedulas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cédula)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cédula)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CódigoCédula">Modificar</a> |
+    <a asp-action="Index">Regresar</a>
+</div>

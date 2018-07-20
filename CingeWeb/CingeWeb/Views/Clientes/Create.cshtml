@@ -1,0 +1,81 @@
+﻿@model CingeWeb.Models.Clientes
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Nuevo Registro</h2>
+
+<h4>Clientes</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Código" class="control-label"></label>
+                <input asp-for="Código" class="form-control" />
+                <span asp-validation-for="Código" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Localidad" class="control-label"></label>
+                <input asp-for="Localidad" class="form-control" />
+                <span asp-validation-for="Localidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CódigoCédula" class="control-label"></label>
+                <select asp-for="CódigoCédula" class ="form-control" asp-items="ViewBag.CódigoCédula"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cédula" class="control-label"></label>
+                <input asp-for="Cédula" class="form-control" />
+                <span asp-validation-for="Cédula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TelefonoCodigoArea" class="control-label"></label>
+                <input asp-for="TelefonoCodigoArea" class="form-control" />
+                <span asp-validation-for="TelefonoCodigoArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Teléfono" class="control-label"></label>
+                <input asp-for="Teléfono" class="form-control" />
+                <span asp-validation-for="Teléfono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dirección" class="control-label"></label>
+                <input asp-for="Dirección" class="form-control" />
+                <span asp-validation-for="Dirección" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaCreacíon" class="control-label"></label>
+                <input asp-for="FechaCreacíon" class="form-control" />
+                <span asp-validation-for="FechaCreacíon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CódigoZona" class="control-label"></label>
+                <select asp-for="CódigoZona" class ="form-control" asp-items="ViewBag.CódigoZona"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

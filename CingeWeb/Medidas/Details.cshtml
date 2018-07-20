@@ -1,0 +1,24 @@
+﻿@model CingeWeb.Models.Medidas
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalles de Medida</h2>
+
+<div>
+    <h4>Medidas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreUnidad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreUnidad)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CódigoUnidad">Modificar</a> |
+    <a asp-action="Index">Regresar</a>
+</div>

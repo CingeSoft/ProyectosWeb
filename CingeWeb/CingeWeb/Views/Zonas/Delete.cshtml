@@ -1,0 +1,27 @@
+﻿@model CingeWeb.Models.Zonas
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Registro de Zonas</h2>
+
+<h3>Esta Seguro de Borrar Registro?</h3>
+<div>
+    <h4>Zonas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreZona)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreZona)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CódigoZona" />
+        <input type="submit" value="Borrar" class="btn btn-default" /> |
+        <a asp-action="Index">Regresar</a>
+    </form>
+</div>

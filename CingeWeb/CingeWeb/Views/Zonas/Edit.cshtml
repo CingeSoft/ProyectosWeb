@@ -1,0 +1,34 @@
+﻿@model CingeWeb.Models.Zonas
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Modificar Registro de Zonas</h2>
+
+<h4>Zonas</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CódigoZona" />
+            <div class="form-group">
+                <label asp-for="NombreZona" class="control-label"></label>
+                <input asp-for="NombreZona" class="form-control" />
+                <span asp-validation-for="NombreZona" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Modificar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
