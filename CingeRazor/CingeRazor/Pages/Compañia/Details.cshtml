@@ -1,0 +1,79 @@
+﻿@page
+@model CingeRazor.Pages.Compañia.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalle de la Compañia</h2>
+
+<div>
+    <h4>Compañias</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Compañias.NombreCompañia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Compañias.NombreCompañia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Compañias.Telefono)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Compañias.Telefono)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Compañias.Fax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Compañias.Fax)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Compañias.ApartadoPostal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Compañias.ApartadoPostal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Compañias.Direccion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Compañias.Direccion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Compañias.CedulaJuridica)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Compañias.CedulaJuridica)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Compañias.Correo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Compañias.Correo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Compañias.PaginaWeb)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Compañias.PaginaWeb)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Compañias.FacturaElectronica)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Compañias.FacturaElectronica)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Compañias.DireccionLogo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Compañias.DireccionLogo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Compañias.IdCompañia">Modificar</a> |
+    <a asp-page="./Index">Regresar</a>
+</div>

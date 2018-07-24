@@ -1,0 +1,55 @@
+﻿@page
+@model CingeRazor.DetailsModelUsuarios
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalles del Usuario</h2>
+
+<div>
+    <h4>Usuarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.NombreUsuario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.NombreUsuario)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.Contraseñas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.Contraseñas)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.FechaCreacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.FechaCreacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.UltimoLogeo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.UltimoLogeo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.IdRolNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.IdRolNavigation.IdRol)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Usuarios.Usuario">Modificar</a> |
+    <a asp-page="./Index">Regresar</a>
+</div>

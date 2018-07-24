@@ -1,0 +1,58 @@
+﻿@page
+@model CingeRazor.Pages.Mascota.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Borrar</h2>
+
+<h3>Esta Seguro de Borrar Registro?</h3>
+<div>
+    <h4>Mascotas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Mascotas.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mascotas.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mascotas.Peso)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mascotas.Peso)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mascotas.Sexo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mascotas.Sexo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mascotas.Edad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mascotas.Edad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mascotas.Especie)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mascotas.Especie)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mascotas.CódigoNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mascotas.CódigoNavigation.Código)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Mascotas.CódigoMascota" />
+        <input type="submit" value="Borrar" class="btn btn-default" /> |
+        <a asp-page="./Index">Regresar</a>
+    </form>
+</div>

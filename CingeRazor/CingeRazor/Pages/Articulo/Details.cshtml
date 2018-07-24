@@ -1,0 +1,67 @@
+﻿@page
+@model CingeRazor.Pages.Articulo.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalles del Artículo</h2>
+
+<div>
+    <h4>Articulos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Articulos.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Articulos.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Articulos.CostoPromedio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Articulos.CostoPromedio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Articulos.MargenUtilida)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Articulos.MargenUtilida)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Articulos.PrecioVenta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Articulos.PrecioVenta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Articulos.PagaImpuesto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Articulos.PagaImpuesto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Articulos.FechaCreacíon)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Articulos.FechaCreacíon)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Articulos.CódigoUnidadNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Articulos.CódigoUnidadNavigation.CódigoUnidad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Articulos.TipoArticuloNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Articulos.TipoArticuloNavigation.TipoArticulo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Articulos.Código">Modificar</a> |
+    <a asp-page="./Index">Regresar</a>
+</div>

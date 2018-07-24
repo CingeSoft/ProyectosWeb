@@ -6,11 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CingeWeb.Models;
+using System.Globalization;
+using System.Security.Cryptography;
+
 
 namespace CingeWeb.Controllers
 {
     public class UsuariosController : Controller
+        
     {
+        
         private readonly CingeWebContext _context;
 
         public UsuariosController(CingeWebContext context)
@@ -58,6 +63,7 @@ namespace CingeWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Usuario,NombreUsuario,Contraseñas,IdRol,FechaCreacion,UltimoLogeo,Email")] Usuarios usuarios)
         {
+           
             if (ModelState.IsValid)
             {
                 _context.Add(usuarios);
@@ -65,6 +71,7 @@ namespace CingeWeb.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdRol"] = new SelectList(_context.Roles, "IdRol", "IdRol", usuarios.IdRol);
+            usuarios.FechaCreacion = DateTime.Now;
             return View(usuarios);
         }
 
@@ -155,7 +162,9 @@ namespace CingeWeb.Controllers
         {
             return _context.Usuarios.Any(e => e.Usuario == id);
         }
-
+       
 
     }
+   
+
 }

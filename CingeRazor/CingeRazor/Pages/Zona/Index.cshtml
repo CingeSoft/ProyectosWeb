@@ -1,0 +1,38 @@
+﻿@page
+@model CingeRazor.Pages.Zona.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 align="center">Admin Zonas</h1>
+<hr border-style:inset />
+
+<p>
+    <a asp-page="Create">Crear Zona</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Zonas[0].NombreZona)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Zonas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreZona)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.CódigoZona">Modificar</a> |
+                    <a asp-page="./Details" asp-route-id="@item.CódigoZona">Detalles</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.CódigoZona">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

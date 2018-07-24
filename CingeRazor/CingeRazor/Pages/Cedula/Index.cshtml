@@ -1,0 +1,38 @@
+﻿@page
+@model CingeRazor.Pages.Cedula.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 align="center">Admin Cédula</h1>
+<hr border-style:inset />
+
+<p>
+    <a asp-page="Create">Crear Cédula</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cedulas[0].Cédula)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Cedulas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cédula)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.CódigoCédula">Modificar</a> |
+                    <a asp-page="./Details" asp-route-id="@item.CódigoCédula">Detalles</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.CódigoCédula">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

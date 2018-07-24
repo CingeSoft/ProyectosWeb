@@ -1,0 +1,67 @@
+﻿@page
+@model CingeRazor.IndexModelUsuarios
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 align="center">Seguridad Usuarios</h1>
+<hr border-style:inset />
+
+<p>
+    <a asp-page="Create">Crear Usuario</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuarios[0].NombreUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuarios[0].Contraseñas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuarios[0].FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuarios[0].UltimoLogeo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuarios[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuarios[0].IdRolNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Usuarios) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contraseñas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UltimoLogeo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdRolNavigation.IdRol)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Usuario">Modificar</a> |
+                <a asp-page="./Details" asp-route-id="@item.Usuario">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Usuario">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

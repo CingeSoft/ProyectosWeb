@@ -1,8 +1,6 @@
-﻿@model CingeWeb.Models.Usuarios
-
-@{
-    ViewData["Title"] = "Create";
-}
+﻿
+@page
+@model CingeWeb.Models.Usuarios
 
 <h2>Crear</h2>
 
@@ -25,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Contraseñas" class="control-label"></label>
-                    <input asp-for="Contraseñas" class="form-control" />
+                    <input asp-for="Contraseñas" class="form-control" type="password" />
                     <span asp-validation-for="Contraseñas" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -33,18 +31,18 @@
                     <select asp-for="IdRol" class="form-control" asp-items="ViewBag.IdRol"></select>
                 </div>
                 <div class="form-group">
-                    <label asp-for="FechaCreacion" class="control-label"></label>
-                    <input asp-for="FechaCreacion" class="form-control" input type="datetime-local"/>
+                    @Html.TextBoxFor(x => x.FechaCreacion, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
                     <span asp-validation-for="FechaCreacion" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="UltimoLogeo" class="control-label"></label>
-                    <input asp-for="UltimoLogeo" class="form-control" />
+                    <input asp-for="UltimoLogeo" class="form-control" input value="2000-01-01T00:00:00" readonly />
                     <span asp-validation-for="UltimoLogeo" class="text-danger"></span>
                 </div>
+
                 <div class="form-group">
                     <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="form-control" />
+                    <input asp-for="Email" class="form-control" input type="email" placeholder="cinge@example.com" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">

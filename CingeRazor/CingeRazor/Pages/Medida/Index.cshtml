@@ -1,0 +1,38 @@
+﻿@page
+@model CingeRazor.Pages.Medida.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 align="center">Admin Medidas</h1>
+<hr border-style:inset />
+
+<p>
+    <a asp-page="Create">Crear Medida</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Medidas[0].NombreUnidad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Medidas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreUnidad)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.CódigoUnidad">Modificar</a> |
+                    <a asp-page="./Details" asp-route-id="@item.CódigoUnidad">Detalles</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.CódigoUnidad">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

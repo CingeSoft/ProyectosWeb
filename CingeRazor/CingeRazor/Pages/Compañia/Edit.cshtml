@@ -1,0 +1,80 @@
+﻿@page
+@model CingeRazor.Pages.Compañia.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Modificar Registro</h2>
+
+<h4>Compañias</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Compañias.IdCompañia" />
+            <div class="form-group">
+                <label asp-for="Compañias.NombreCompañia" class="control-label"></label>
+                <input asp-for="Compañias.NombreCompañia" class="form-control" />
+                <span asp-validation-for="Compañias.NombreCompañia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Compañias.Telefono" class="control-label"></label>
+                <input asp-for="Compañias.Telefono" class="form-control" />
+                <span asp-validation-for="Compañias.Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Compañias.Fax" class="control-label"></label>
+                <input asp-for="Compañias.Fax" class="form-control" />
+                <span asp-validation-for="Compañias.Fax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Compañias.ApartadoPostal" class="control-label"></label>
+                <input asp-for="Compañias.ApartadoPostal" class="form-control" />
+                <span asp-validation-for="Compañias.ApartadoPostal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Compañias.Direccion" class="control-label"></label>
+                <input asp-for="Compañias.Direccion" class="form-control" />
+                <span asp-validation-for="Compañias.Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Compañias.CedulaJuridica" class="control-label"></label>
+                <input asp-for="Compañias.CedulaJuridica" class="form-control" />
+                <span asp-validation-for="Compañias.CedulaJuridica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Compañias.Correo" class="control-label"></label>
+                <input asp-for="Compañias.Correo" class="form-control" />
+                <span asp-validation-for="Compañias.Correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Compañias.PaginaWeb" class="control-label"></label>
+                <input asp-for="Compañias.PaginaWeb" class="form-control" />
+                <span asp-validation-for="Compañias.PaginaWeb" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Compañias.FacturaElectronica" class="control-label"></label>
+                <input asp-for="Compañias.FacturaElectronica" class="form-control" />
+                <span asp-validation-for="Compañias.FacturaElectronica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Compañias.DireccionLogo" class="control-label"></label>
+                <input asp-for="Compañias.DireccionLogo" class="form-control" />
+                <span asp-validation-for="Compañias.DireccionLogo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Modificar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

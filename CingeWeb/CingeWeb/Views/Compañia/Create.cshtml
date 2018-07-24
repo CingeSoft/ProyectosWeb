@@ -65,10 +65,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="DireccionLogo" class="control-label"></label>
-                <input asp-for="DireccionLogo" class="form-control" />
-                <span asp-validation-for="DireccionLogo" class="text-danger"></span>
+                <input asp-for="DireccionLogo" class="form-control" type="file" enclyte"multipart/form-data" required />
+                 <span asp-validation-for="DireccionLogo" class="text-danger"></span>
+
             </div>
-            <div class="form-group">
+                        <div class="form-group">
                 <input type="submit" value="Guadar" class="btn btn-default" />
             </div>
             

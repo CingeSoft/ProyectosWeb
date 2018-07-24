@@ -1,0 +1,28 @@
+﻿@page
+@model CingeRazor.Pages.Cedula.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Borrar</h2>
+
+<h3>Esta Seguro de Borrar Registro?</h3>
+<div>
+    <h4>Cédulas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cedulas.Cédula)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cedulas.Cédula)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Cedulas.CódigoCédula" />
+        <input type="submit" value="Borrar" class="btn btn-default" /> |
+        <a asp-page="./Index">Regresar</a>
+    </form>
+</div>

@@ -1,0 +1,82 @@
+﻿@page
+@model CingeRazor.Pages.Cliente.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Crear Cliente</h2>
+
+<h4>Clientes</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Clientes.Código" class="control-label"></label>
+                <input asp-for="Clientes.Código" class="form-control" maxlength="20" required/>
+                <span asp-validation-for="Clientes.Código" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clientes.Nombre" class="control-label"></label>
+                <input asp-for="Clientes.Nombre" class="form-control" maxlength="200" required/>
+                <span asp-validation-for="Clientes.Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clientes.Localidad" class="control-label"></label>
+                <input asp-for="Clientes.Localidad" class="form-control" maxlength="200" required/>
+                <span asp-validation-for="Clientes.Localidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clientes.CódigoCédula" class="control-label"></label>
+                <select asp-for="Clientes.CódigoCédula" class ="form-control" asp-items="ViewBag.CódigoCédula"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clientes.Cédula" class="control-label"></label>
+                <input asp-for="Clientes.Cédula" class="form-control" maxlength="50" required/>
+                <span asp-validation-for="Clientes.Cédula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clientes.TelefonoCodigoArea" class="control-label"></label>
+                <input asp-for="Clientes.TelefonoCodigoArea" class="form-control" maxlength="5" required/>
+                <span asp-validation-for="Clientes.TelefonoCodigoArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clientes.Teléfono" class="control-label"></label>
+                <input asp-for="Clientes.Teléfono" class="form-control" maxlength="20" required/>
+                <span asp-validation-for="Clientes.Teléfono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clientes.Dirección" class="control-label"></label>
+                <input asp-for="Clientes.Dirección" class="form-control" maxlength="250" required/>
+                <span asp-validation-for="Clientes.Dirección" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clientes.Email" class="control-label"></label>
+                <input asp-for="Clientes.Email" class="form-control" placeholder="cinge@example.com" type="email" required/>
+                <span asp-validation-for="Clientes.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clientes.FechaCreacíon" class="control-label"></label>
+                <input asp-for="Clientes.FechaCreacíon" class="form-control" />
+                <span asp-validation-for="Clientes.FechaCreacíon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clientes.CódigoZona" class="control-label"></label>
+                <select asp-for="Clientes.CódigoZona" class ="form-control" asp-items="ViewBag.CódigoZona"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

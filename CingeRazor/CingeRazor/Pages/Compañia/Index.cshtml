@@ -1,0 +1,92 @@
+﻿@page
+@model CingeRazor.Pages.Compañia.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 align="center">Seguridad Compañias</h1>
+<hr border-style:inset />
+
+<p>
+    <a asp-page="Create">Crear Compañia</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Compañias[0].NombreCompañia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compañias[0].Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compañias[0].Fax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compañias[0].ApartadoPostal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compañias[0].Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compañias[0].CedulaJuridica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compañias[0].Correo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compañias[0].PaginaWeb)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compañias[0].FacturaElectronica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compañias[0].DireccionLogo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Compañias)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCompañia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApartadoPostal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CedulaJuridica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Correo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaginaWeb)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FacturaElectronica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DireccionLogo)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.IdCompañia">Modificar</a> |
+                    <a asp-page="./Details" asp-route-id="@item.IdCompañia">Detalles</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.IdCompañia">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

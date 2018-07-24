@@ -1,0 +1,38 @@
+﻿@page
+@model CingeRazor.Pages.TipoArticulo.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 align="center">Admin Tipo Artículos</h1>
+<hr border-style:inset />
+
+<p>
+    <a asp-page="Create">Crear Tipo Artículo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoArticulos[0].NombreTipo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TipoArticulos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreTipo)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.TipoArticulo">Modificar</a> |
+                    <a asp-page="./Details" asp-route-id="@item.TipoArticulo">Detalles</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.TipoArticulo">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

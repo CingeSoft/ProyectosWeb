@@ -1,0 +1,25 @@
+﻿@page
+@model CingeRazor.Pages.Medida.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalle de la Medida</h2>
+
+<div>
+    <h4>Medidas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Medidas.NombreUnidad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Medidas.NombreUnidad)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Medidas.CódigoUnidad">Modificar</a> |
+    <a asp-page="./Index">Regresar</a>
+</div>

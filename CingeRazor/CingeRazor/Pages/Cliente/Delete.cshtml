@@ -1,0 +1,82 @@
+﻿@page
+@model CingeRazor.Pages.Cliente.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Borrar</h2>
+
+<h3>Esta Seguro de Borrar Registro?</h3>
+<div>
+    <h4>Clientes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.Localidad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.Localidad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.Cédula)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.Cédula)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.TelefonoCodigoArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.TelefonoCodigoArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.Teléfono)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.Teléfono)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.Dirección)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.Dirección)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.FechaCreacíon)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.FechaCreacíon)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.CódigoCédulaNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.CódigoCédulaNavigation.CódigoCédula)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.CódigoZonaNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.CódigoZonaNavigation.CódigoZona)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Clientes.Código" />
+        <input type="submit" value="Borrar" class="btn btn-default" /> |
+        <a asp-page="./Index">Regresar</a>
+    </form>
+</div>

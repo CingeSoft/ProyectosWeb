@@ -1,0 +1,39 @@
+﻿@page
+@model CingeRazor.Pages.Cedula.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Crear Cédula</h2>
+
+<h4>Cédulas</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Cedulas.CódigoCédula" class="control-label"></label>
+                <input asp-for="Cedulas.CódigoCédula" class="form-control"  maxlength="10" required/>
+                <span asp-validation-for="Cedulas.CódigoCédula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cedulas.Cédula" class="control-label"></label>
+                <input asp-for="Cedulas.Cédula" class="form-control" required/>
+                <span asp-validation-for="Cedulas.Cédula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

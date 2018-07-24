@@ -1,0 +1,63 @@
+﻿@page
+@model CingeRazor.CreateModelUsuarios
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Crear Nuevo Registro</h2>
+
+<h4>Usuarios</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Usuarios.Usuario" class="control-label"></label>
+                <input asp-for="Usuarios.Usuario" class="form-control" />
+                <span asp-validation-for="Usuarios.Usuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuarios.NombreUsuario" class="control-label"></label>
+                <input asp-for="Usuarios.NombreUsuario" class="form-control" />
+                <span asp-validation-for="Usuarios.NombreUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuarios.Contraseñas" class="control-label"></label>
+                <input asp-for="Usuarios.Contraseñas" class="form-control" type="password"/>
+                <span asp-validation-for="Usuarios.Contraseñas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuarios.IdRol" class="control-label"></label>
+                <select asp-for="Usuarios.IdRol" class="form-control" asp-items="ViewBag.IdRol"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuarios.FechaCreacion" class="control-label"></label>
+                <input asp-for="Usuarios.FechaCreacion" class="form-control"/>
+                <span asp-validation-for="Usuarios.FechaCreacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuarios.UltimoLogeo" class="control-label"></label>
+                <input asp-for="Usuarios.UltimoLogeo" class="form-control" input value="2000-01-01T00:00:00" readonly/>
+                <span asp-validation-for="Usuarios.UltimoLogeo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuarios.Email" class="control-label"></label>
+                <input asp-for="Usuarios.Email" class="form-control" placeholder="cinge@example.com" type="email"/>
+                <span asp-validation-for="Usuarios.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,25 @@
+﻿@page
+@model CingeRazor.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalle del Rol</h2>
+
+<div>
+    <h4>Roles</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Roles.NombreRol)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Roles.NombreRol)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Roles.IdRol">Modificar</a> |
+    <a asp-page="./Index">Regresar</a>
+</div>

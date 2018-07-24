@@ -1,0 +1,39 @@
+﻿@page
+@model CingeRazor.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Crear Rol</h2>
+
+<h4>Roles</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Roles.IdRol" class="control-label"></label>
+                <input asp-for="Roles.IdRol" class="form-control" type="text" required oninvalid="setCustomValidity('El campo IdRol es obligatorio')"oninput="setCustomValidity('')"/><br /><br />
+                <span asp-validation-for="Roles.IdRol" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Roles.NombreRol" class="control-label"></label>
+                <input asp-for="Roles.NombreRol" class="form-control"type="text" required oninvalid="setCustomValidity('El campo NombreRol es obligatorio')" oninput="setCustomValidity('')"/><br /><br />
+                <span asp-validation-for="Roles.NombreRol" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
