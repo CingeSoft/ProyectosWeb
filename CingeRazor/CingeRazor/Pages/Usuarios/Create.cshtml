@@ -1,6 +1,7 @@
 ﻿@page
 @model CingeRazor.CreateModelUsuarios
 
+
 @{
     ViewData["Title"] = "Create";
 }
@@ -25,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Usuarios.Contraseñas" class="control-label"></label>
-                <input asp-for="Usuarios.Contraseñas" class="form-control" type="password"/>
+                <input asp-for="Usuarios.Contraseñas" class="form-control" type="password" />
                 <span asp-validation-for="Usuarios.Contraseñas" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,25 +35,33 @@
             </div>
             <div class="form-group">
                 <label asp-for="Usuarios.FechaCreacion" class="control-label"></label>
-                <input asp-for="Usuarios.FechaCreacion" class="form-control"/>
+                <input asp-for="Usuarios.FechaCreacion" class="form-control" />
                 <span asp-validation-for="Usuarios.FechaCreacion" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Usuarios.UltimoLogeo" class="control-label"></label>
-                <input asp-for="Usuarios.UltimoLogeo" class="form-control" input value="2000-01-01T00:00:00" readonly/>
+                <input asp-for="Usuarios.UltimoLogeo" class="form-control" input value="2000-01-01T00:00:00" readonly />
                 <span asp-validation-for="Usuarios.UltimoLogeo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Usuarios.Email" class="control-label"></label>
-                <input asp-for="Usuarios.Email" class="form-control" placeholder="cinge@example.com" type="email"/>
+                <input asp-for="Usuarios.Email" class="form-control" placeholder="cinge@example.com" type="email" />
                 <span asp-validation-for="Usuarios.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
+
+            <div>
+                <label asp-for="Usuarios.FechaCreacion" class="control-label"></label>
+                <input asp-for="Usuarios.FechaCreacion" class="form-control" />
+                @DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
+                @Html.TextBoxFor(Models => Models.Usuarios.FechaCreacion, new { @class = "form-control disabled", @type = "datetime-local", @max = string.Format("{0:yyyy-MM-dd hh:mm tt}", DateTime.Now) })
+            </div>
         </form>
     </div>
 </div>
+
 
 <div>
     <a asp-page="Index">Regresar</a>

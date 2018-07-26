@@ -15,12 +15,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Roles.IdRol" class="control-label"></label>
-                <input asp-for="Roles.IdRol" class="form-control" type="text" required oninvalid="setCustomValidity('El campo IdRol es obligatorio')"oninput="setCustomValidity('')"/><br /><br />
+                <input asp-for="Roles.IdRol" class="form-control" />
                 <span asp-validation-for="Roles.IdRol" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Roles.NombreRol" class="control-label"></label>
-                <input asp-for="Roles.NombreRol" class="form-control"type="text" required oninvalid="setCustomValidity('El campo NombreRol es obligatorio')" oninput="setCustomValidity('')"/><br /><br />
+                <input asp-for="Roles.NombreRol" class="form-control"type="text"/>
                 <span asp-validation-for="Roles.NombreRol" class="text-danger"></span>
             </div>
             <div class="form-group">

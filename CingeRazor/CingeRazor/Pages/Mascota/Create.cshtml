@@ -40,13 +40,15 @@
                 <input asp-for="Mascotas.Edad" class="form-control" maxlength="18"required type="number"/>
                 <span asp-validation-for="Mascotas.Edad" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" >
                 <label asp-for="Mascotas.Especie" class="control-label"></label>
-                <select asp-for="Mascotas.Especie"class="form-control">
+                <select asp-for="Mascotas.Especie" contenteditable="true" class="form-control">
                     <option>Perro</option>
                     <option>Gato</option>
                     <option>Conejo</option>
+                    <option>Otros</option>
                 </select>
+             
             </div>
             <div class="form-group">
                 <label asp-for="Mascotas.Código" class="control-label"></label>
@@ -55,10 +57,11 @@
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
-        </form>
+             </form>
+       
     </div>
 </div>
-
+    
 <div>
     <a asp-page="Index">Regresar</a>
 </div>

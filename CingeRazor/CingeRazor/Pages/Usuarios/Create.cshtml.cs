@@ -11,6 +11,8 @@ namespace CingeRazor
 {
     public class CreateModelUsuarios : PageModel
     {
+        string date = String.Format("{0: D}", DateTime.Now);
+        
         private readonly CingeRazor.Models.CingeWebContext _context;
 
         public CreateModelUsuarios(CingeRazor.Models.CingeWebContext context)

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace CingeRazor.Models
 {
@@ -9,8 +11,11 @@ namespace CingeRazor.Models
         {
             Clientes = new HashSet<Clientes>();
         }
-
+        [Required(ErrorMessage = "El campo CódigoCédula es requerido")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string CódigoCédula { get; set; }
+        [Required(ErrorMessage = "El campo Cédula es requerido")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Cédula { get; set; }
 
         public ICollection<Clientes> Clientes { get; set; }
