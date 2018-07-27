@@ -35,6 +35,8 @@ namespace CingeRazor.Pages.Articulo
                 return Page();
             }
 
+            Articulos.FechaCreacíon = DateTime.Now;
+
             _context.Articulos.Add(Articulos);
             await _context.SaveChangesAsync();
 

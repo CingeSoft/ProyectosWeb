@@ -36,6 +36,10 @@ namespace CingeRazor
                 return Page();
             }
 
+            Usuarios.FechaCreacion = DateTime.Now;
+            Usuarios.UltimoLogeo = new DateTime(1900, 1, 1);
+            Usuarios.Contraseñas = Usuarios.EncriptarContrasena(Usuarios.Contraseñas);
+
             _context.Usuarios.Add(Usuarios);
             await _context.SaveChangesAsync();
 

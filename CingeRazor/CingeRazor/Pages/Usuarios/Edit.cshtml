@@ -14,16 +14,15 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Usuarios.Usuario" />
+            <div class="form-group">
+                <label asp-for="Usuarios.Usuario" class="control-label"></label>
+                <input asp-for="Usuarios.Usuario" class="form-control" readonly />
+                <span asp-validation-for="Usuarios.NombreUsuario" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Usuarios.NombreUsuario" class="control-label"></label>
                 <input asp-for="Usuarios.NombreUsuario" class="form-control" />
                 <span asp-validation-for="Usuarios.NombreUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Usuarios.Contraseñas" class="control-label"></label>
-                <input asp-for="Usuarios.Contraseñas" class="form-control" />
-                <span asp-validation-for="Usuarios.Contraseñas" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Usuarios.IdRol" class="control-label"></label>
@@ -32,15 +31,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="Usuarios.FechaCreacion" class="control-label"></label>
-                <input asp-for="Usuarios.FechaCreacion" class="form-control" />
+                <input asp-for="Usuarios.FechaCreacion" class="form-control" readonly />
                 <span asp-validation-for="Usuarios.FechaCreacion" class="text-danger"></span>
             </div>
             <div id="IsLiquorLicenceDocumentOnPremisesYes" class="groupLongLabel">
-             
+
             </div>
             <div class="form-group">
                 <label asp-for="Usuarios.UltimoLogeo" class="control-label"></label>
-                <input asp-for="Usuarios.UltimoLogeo" class="form-control" />
+                <input asp-for="Usuarios.UltimoLogeo" class="form-control" readonly />
                 <span asp-validation-for="Usuarios.UltimoLogeo" class="text-danger"></span>
             </div>
             <div class="form-group">
