@@ -12,10 +12,11 @@
     <div class="outer">
         <ul id="mymenu">
             <li data-href="#home">Cinge</li>
-            <li data-href="#products"e>
+
+            <li data-href="#products">
                 <p>Facturación</p>
                 <ul>
-                    <li data-href="#software">Factura</li>
+                    <li><a asp-page="/Index">Factura</a></li>
                 </ul>
             </li>
             <li data-href="#products">
@@ -24,36 +25,33 @@
                     <li>
                         <p>Clientes</p>
                         <ul>
-                            <li data-href="#support-standard">Cédulas</li>
-                            <li data-href="#support-dedicated">Zonas</li>
+                            <li><a asp-page="/Index">Clientes</a></li>
+                            <li><a asp-page="/Index">Cédulas</a></li>
+                            <li><a asp-page="/Index">Zonas</a></li>
                         </ul>
                     </li>
                     <li>
                         <p>Artículos</p>
                         <ul>
-                            <li>Tipo Artículos</li>
-                            <li>Medidas</li>
+                            <li><a asp-page="/Index">Artículos</a></li>
+                            <li><a asp-page="/Index">Tipo Artículos</a></li>
+                            <li><a asp-page="/Index">Medidas</a></li>
                         </ul>
-                    </li>
-                    <li>
-                        <p>Mascotas</p>
-
                     </li>
                 </ul>
             <li data-href="#products">
                 <p>Reportes</p>
                 <ul>
-                    <li data-href="#software">Reporte Ventas</li>
-                    <li><a asp-page="in">Contact</a></li>
+                    <li><a asp-page="/Index">Ventas</a></li>
                 </ul>
             </li>
             <li data-href="#products">
                 <p>Seguridad</p>
                 <ul>
-                    <li data-href="#software">Roles</li>
-                    <li data-href="#software">Usuarios</li>
-                    <li data-href="#software">Compañia</li>
-                    <li data-href="#software">Cambio Contraseña</li>
+                    <li><a asp-page="/Index">Roles</a></li>
+                    <li><a asp-page="/Index">Usuarios</a></li>
+                    <li><a asp-page="/Index">Compañia</a></li>
+                    <li><a asp-page="/Index">Cambio Contraseña</a></li>
                 </ul>
             </li>
         </ul>
@@ -140,8 +138,10 @@
                     <li><a asp-page="/Index">Home</a></li>
                     <li><a asp-page="/About">About</a></li>
                     <li><a asp-page="/Contact">Contact</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
-
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-page="/Logout">@User.Identity.Name (Cerrar sesión)</a></li>
+                    }
                 </ul>
             </div>
         </div>

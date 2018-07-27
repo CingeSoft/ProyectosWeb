@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace CingeRazor.Models
 {
     public partial class Usuarios
     {
-        private readonly string SALT = "safnkjf0w320tnSN02TR2SAFQOasdaslfnal20";
+        private static readonly string SALT = "safnkjf0w320tnSN02TR2SAFQOasdaslfnal20";
 
         [Required(ErrorMessage = "El campo Usuario es requerido")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
@@ -34,13 +33,13 @@ namespace CingeRazor.Models
         [Required(ErrorMessage = "El campo UltimoLogeo es requerido")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public DateTime UltimoLogeo { get; set; }
-        
+
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Email { get; set; }
 
         public Roles IdRolNavigation { get; set; }
 
-        public string EncriptarContrasena(string contrasena)
+        public static string EncriptarContrasena(string contrasena)
         {
             byte[] salt = System.Text.Encoding.ASCII.GetBytes(SALT);
             string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(password: contrasena,
