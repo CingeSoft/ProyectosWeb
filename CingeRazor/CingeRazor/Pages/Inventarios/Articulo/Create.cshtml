@@ -12,39 +12,45 @@
 <div class="row">
     <div class="col-md-4">
         <form method="post">
+            <script>
+                function CalcularPrecioVenta() {
+                    document.getElementById('resultado').value = parseFloat(document.getElementById('sumando1').value) * (1 + parseFloat(document.getElementById('sumando2').value / 100));
+                    //(Costo * (1 + MargenUtilidad / 100)) 
+                }
+            </script>
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Articulos.Código" class="control-label"></label>
-                <input asp-for="Articulos.Código" class="form-control" maxlength="20"required/>
+                <input asp-for="Articulos.Código" class="form-control" maxlength="20" required />
                 <span asp-validation-for="Articulos.Código" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Articulos.Nombre" class="control-label"></label>
-                <input asp-for="Articulos.Nombre" class="form-control" maxlength="200"required/>
+                <input asp-for="Articulos.Nombre" class="form-control" maxlength="200" required />
                 <span asp-validation-for="Articulos.Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Articulos.TipoArticulo" class="control-label"></label>
-                <select asp-for="Articulos.TipoArticulo" class ="form-control" asp-items="ViewBag.TipoArticulo"></select>
+                <select asp-for="Articulos.TipoArticulo" class="form-control" asp-items="ViewBag.TipoArticulo"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Articulos.CódigoUnidad" class="control-label"></label>
-                <select asp-for="Articulos.CódigoUnidad" class ="form-control" asp-items="ViewBag.CódigoUnidad"></select>
+                <select asp-for="Articulos.CódigoUnidad" class="form-control" asp-items="ViewBag.CódigoUnidad"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Articulos.CostoPromedio" class="control-label"></label>
-                <input asp-for="Articulos.CostoPromedio" class="form-control"maxlength="20"required type="number" />
+                <input asp-for="Articulos.CostoPromedio" class="form-control" maxlength="20" required type="number" />
                 <span asp-validation-for="Articulos.CostoPromedio" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Articulos.MargenUtilida" class="control-label"></label>
-                <input asp-for="Articulos.MargenUtilida" class="form-control" maxlength="20"required type="number"/>
+                <input asp-for="Articulos.MargenUtilida" class="form-control" maxlength="20" required type="number" />
                 <span asp-validation-for="Articulos.MargenUtilida" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Articulos.PrecioVenta" class="control-label"></label>
-                <input asp-for="Articulos.PrecioVenta" class="form-control" maxlength="20"required type="number"/>
+                <input asp-for="Articulos.PrecioVenta" class="form-control" maxlength="20" required type="number" />
                 <span asp-validation-for="Articulos.PrecioVenta" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -57,6 +63,15 @@
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
+            <p>
+                Primer sumando: <input onkeyup="CalcularPrecioVenta();" id="sumando1" type="text" size="8" maxlength="8">
+            </p>
+            <p>
+                Segundo sumando: <input onkeyup="CalcularPrecioVenta();" id="sumando2" type="text" size="8" maxlength="8">
+            </p>
+            <p>
+                Resultado es: <input id="resultado" type="text" size="10" maxlength="10">
+            </p>
         </form>
 
     </div>

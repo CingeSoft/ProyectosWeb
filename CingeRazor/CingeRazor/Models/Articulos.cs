@@ -31,6 +31,8 @@ namespace CingeRazor.Models
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public decimal MargenUtilida { get; set; }
 
+        
+
         [Required(ErrorMessage = "El campo PrecioVenta es requerido")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
 
@@ -46,5 +48,21 @@ namespace CingeRazor.Models
 
         public Medidas CódigoUnidadNavigation { get; set; }
         public TipoArticulos TipoArticuloNavigation { get; set; }
+
+
+       
+
+
+
+
+    }
+
+    public class function 
+
+    {
+        decimal CostoPromedio = 0;
+        decimal MargenUtilida = 0;
+        decimal PrecioVenta = 0;
+      
     }
 }

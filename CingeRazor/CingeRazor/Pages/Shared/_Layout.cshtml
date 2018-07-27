@@ -25,9 +25,9 @@
                     <li>
                         <p>Clientes</p>
                         <ul>
-                            <li><a asp-page="/Index">Clientes</a></li>
-                            <li><a asp-page="/Index">Cédulas</a></li>
-                            <li><a asp-page="/Index">Zonas</a></li>
+                            <li><a asp-page="/Clientes/Cliente">Clientes</a></li>
+                            <li><a asp-page="/Clientes/Cedula">Cédulas</a></li>
+                            <li><a asp-page="/Clientes/Zona">Zonas</a></li>
                         </ul>
                     </li>
                     <li>
@@ -100,6 +100,7 @@
     </style>
 </body>
 </html>
+
 <html>
 
 <head>
@@ -119,7 +120,7 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-form navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -135,9 +136,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
-                    <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
+                    <li>@Html.ActionLink("Home", "Index", "Home")
+                    <li>@Html.ActionLink("About", "About", "Home")
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li><a asp-page="/Logout">@User.Identity.Name (Cerrar sesión)</a></li>
@@ -157,9 +158,11 @@
         </footer>
     </div>
 
+
     <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+        <script src="~/lib/jquery/"></script>
+        <script src="~/lib/bootstrap"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
@@ -179,6 +182,6 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
-</body>
+   </body>
 </html>
 
