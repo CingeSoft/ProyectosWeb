@@ -1,106 +1,4 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>jQuery Shield UI Demos</title>
-    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
-    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
-</head>
-<body class="theme-light">
-    <link href="/Content/css/ListBox/FlagsAll.css" rel="stylesheet" type="text/css" />
-    <div class="outer">
-        <ul id="mymenu">
-            <li data-href="#home">Cinge</li>
-
-            <li data-href="#products">
-                <p>Facturación</p>
-                <ul>
-                    <li><a asp-page="/Index">Factura</a></li>
-                </ul>
-            </li>
-            <li data-href="#products">
-                <p>Mantenimientos</p>
-                <ul>
-                    <li>
-                        <p>Clientes</p>
-                        <ul>
-                            <li><a asp-page="/Clientes/Cliente">Clientes</a></li>
-                            <li><a asp-page="/Clientes/Cedula">Cédulas</a></li>
-                            <li><a asp-page="/Clientes/Zona">Zonas</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <p>Artículos</p>
-                        <ul>
-                            <li><a asp-page="/Index">Artículos</a></li>
-                            <li><a asp-page="/Index">Tipo Artículos</a></li>
-                            <li><a asp-page="/Index">Medidas</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            <li data-href="#products">
-                <p>Reportes</p>
-                <ul>
-                    <li><a asp-page="/Index">Ventas</a></li>
-                </ul>
-            </li>
-            <li data-href="#products">
-                <p>Seguridad</p>
-                <ul>
-                    <li><a asp-page="/Index">Roles</a></li>
-                    <li><a asp-page="/Index">Usuarios</a></li>
-                    <li><a asp-page="/Index">Compañia</a></li>
-                    <li><a asp-page="/Index">Cambio Contraseña</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <script type="text/javascript">
-        jQuery(function ($) {
-            $("#mymenu").shieldMenu({
-                cls: "mymenu",
-                orientation: "horizontal"
-            });
-        });
-    </script>
-    <style>
-        .outer {
-            margin: auto;
-            max-width: 600px;
-            min-height: 100px;
-        }
-
-        .mymenu {
-            width: 90%;
-        }
-
-            .mymenu .right {
-                float: right;
-            }
-
-        .megamenu:hover,
-        .megamenu.sui-menu-item-selected {
-            background-color: transparent;
-            color: inherit;
-        }
-
-        .megamenu .flag {
-            display: inline-block;
-        }
-
-        .megamenu .mmlink {
-            color: blue;
-            text-decoration: underline;
-        }
-
-        .megamenu-inner {
-            width: 400px;
-        }
-    </style>
-</body>
-</html>
-
 <html>
 
 <head>
@@ -120,7 +18,7 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-form navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -129,25 +27,60 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="~/images/logo nuevo.png" width="120">
-                <a asp-page="/Index" class="navbar-brand"></a>
+                <img src="~/images/logo.png " width="120">
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"></a>
 
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
                     <li>@Html.ActionLink("Home", "Index", "Home")
-                    <li>@Html.ActionLink("About", "About", "Home")
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li><a asp-page="/Logout">@User.Identity.Name (Cerrar sesión)</a></li>
-                    }
+                    @*<li>@Html.ActionLink("About", "About", "Home")
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")
+                    <li>@Html.ActionLink("Principal", "Index", "Home")</li>*@
+                    <li class="dropdown ">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
+                            Inventarios <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Artículo", "Index", "Inventarios", "Articulo")</li>
+                            <li>@Html.ActionLink("Medida", "Index", "Medida")</li>
+                            <li>@Html.ActionLink("TipoArtículo", "Index", "TipoArtículo")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
+                            Clientes <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Cédula", "Index", "Cédula")</li>
+                            <li>@Html.ActionLink("Cliente", "Index", "Cliente")</li>
+                            <li>@Html.ActionLink("Mascota", "Index", "Mascota")</li>
+                            <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
+                            <li>@Html.ActionLink("Zona", "Index", "Zona")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
+                            Administración <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Compañia", "Index", "Compañia")</li>
+                            <li>@Html.ActionLink("Roles", "Index", "Roles")</li>
+                            <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
+                        </ul>
+                    </li>
+                    @*<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
                 </ul>
             </div>
         </div>
     </nav>
-
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li><a asp-page="/Logout">@User.Identity.Name (Cerrar sesión)</a></li>
+    }
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
@@ -158,11 +91,9 @@
         </footer>
     </div>
 
-
     <environment include="Development">
-
-        <script src="~/lib/jquery/"></script>
-        <script src="~/lib/bootstrap"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
@@ -182,6 +113,7 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
-   </body>
+</body>
 </html>
+
 

@@ -11,6 +11,7 @@ namespace CingeRazor.Pages.Cedula
 {
     public class CreateModel : PageModel
     {
+        string date = String.Format("{0: D}", DateTime.Now);
         private readonly CingeRazor.Models.CingeWebContext _context;
 
         public CreateModel(CingeRazor.Models.CingeWebContext context)
@@ -28,6 +29,7 @@ namespace CingeRazor.Pages.Cedula
 
         public async Task<IActionResult> OnPostAsync()
         {
+            
             if (!ModelState.IsValid)
             {
                 return Page();

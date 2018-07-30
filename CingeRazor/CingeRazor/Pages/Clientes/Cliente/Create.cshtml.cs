@@ -11,6 +11,7 @@ namespace CingeRazor.Pages.Cliente
 {
     public class CreateModel : PageModel
     {
+        string date = String.Format("{0: D}", DateTime.Now);
         private readonly CingeRazor.Models.CingeWebContext _context;
 
         public CreateModel(CingeRazor.Models.CingeWebContext context)
@@ -30,6 +31,7 @@ namespace CingeRazor.Pages.Cliente
 
         public async Task<IActionResult> OnPostAsync()
         {
+            Clientes.FechaCreacíon = DateTime.Now;
             if (!ModelState.IsValid)
             {
                 return Page();

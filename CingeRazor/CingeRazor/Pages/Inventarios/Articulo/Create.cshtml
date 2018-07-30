@@ -14,7 +14,7 @@
         <form method="post">
             <script>
                 function CalcularPrecioVenta() {
-                    document.getElementById('resultado').value = parseFloat(document.getElementById('sumando1').value) * (1 + parseFloat(document.getElementById('sumando2').value / 100));
+                    document.getElementById('PrecioVenta').value = parseFloat(document.getElementById('CostoPromedio').value) * (1 + parseFloat(document.getElementById('MargenUtilidad').value / 100));
                     //(Costo * (1 + MargenUtilidad / 100)) 
                 }
             </script>
@@ -40,17 +40,20 @@
             </div>
             <div class="form-group">
                 <label asp-for="Articulos.CostoPromedio" class="control-label"></label>
-                <input asp-for="Articulos.CostoPromedio" class="form-control" maxlength="20" required type="number" />
+                <input asp-for="Articulos.CostoPromedio"  onkeyup="CalcularPrecioVenta();" id="CostoPromedio" class="form-control" maxlength="20" required type="number" >
+                @*<input asp-for="Articulos.CostoPromedio" class="form-control" maxlength="20" required type="number" />*@
                 <span asp-validation-for="Articulos.CostoPromedio" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Articulos.MargenUtilida" class="control-label"></label>
-                <input asp-for="Articulos.MargenUtilida" class="form-control" maxlength="20" required type="number" />
+                <input asp-for="Articulos.MargenUtilida" onkeyup="CalcularPrecioVenta();" id="MargenUtilidad" class="form-control" maxlength="20" required type="number" >
+                @* <input asp-for="Articulos.MargenUtilida" class="form-control" maxlength="20" required type="number" />*@
                 <span asp-validation-for="Articulos.MargenUtilida" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Articulos.PrecioVenta" class="control-label"></label>
-                <input asp-for="Articulos.PrecioVenta" class="form-control" maxlength="20" required type="number" />
+                <input asp-for="Articulos.PrecioVenta" id="PrecioVenta" class="form-control" maxlength="20" required type="number">
+                @*<input asp-for="Articulos.PrecioVenta" class="form-control" maxlength="20" required type="number" />*@
                 <span asp-validation-for="Articulos.PrecioVenta" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -63,15 +66,7 @@
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
-            <p>
-                Primer sumando: <input onkeyup="CalcularPrecioVenta();" id="sumando1" type="text" size="8" maxlength="8">
-            </p>
-            <p>
-                Segundo sumando: <input onkeyup="CalcularPrecioVenta();" id="sumando2" type="text" size="8" maxlength="8">
-            </p>
-            <p>
-                Resultado es: <input id="resultado" type="text" size="10" maxlength="10">
-            </p>
+           
         </form>
 
     </div>
