@@ -24,6 +24,7 @@
                 <input asp-for="Usuarios.NombreUsuario" class="form-control" />
                 <span asp-validation-for="Usuarios.NombreUsuario" class="text-danger"></span>
             </div>
+            <input type="hidden" asp-for="Usuarios.Contraseñas" />
             <div class="form-group">
                 <label asp-for="Usuarios.IdRol" class="control-label"></label>
                 <select asp-for="Usuarios.IdRol" class="form-control" asp-items="ViewBag.IdRol"></select>
@@ -33,9 +34,6 @@
                 <label asp-for="Usuarios.FechaCreacion" class="control-label"></label>
                 <input asp-for="Usuarios.FechaCreacion" class="form-control" readonly />
                 <span asp-validation-for="Usuarios.FechaCreacion" class="text-danger"></span>
-            </div>
-            <div id="IsLiquorLicenceDocumentOnPremisesYes" class="groupLongLabel">
-
             </div>
             <div class="form-group">
                 <label asp-for="Usuarios.UltimoLogeo" class="control-label"></label>
@@ -48,7 +46,7 @@
                 <span asp-validation-for="Usuarios.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-default" />
+                <input type="submit" value="Modificar" class="btn btn-default" />
             </div>
         </form>
     </div>

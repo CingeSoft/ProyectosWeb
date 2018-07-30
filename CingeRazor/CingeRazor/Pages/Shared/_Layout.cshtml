@@ -18,7 +18,7 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-header navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,25 +27,28 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="~/images/logo.png " width="120">
+                <img src="~/images/logo nuevo.png " width="120">
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"></a>
 
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
-                    <li>@Html.ActionLink("Home", "Index", "Home")
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")*@
                     @*<li>@Html.ActionLink("About", "About", "Home")
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")
-                    <li>@Html.ActionLink("Principal", "Index", "Home")</li>*@
+        <li>@Html.ActionLink("Contact", "Contact", "Home")
+        <li>@Html.ActionLink("Principal", "Index", "Home")</li>*@
                     <li class="dropdown ">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
                             Inventarios <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Artículo", "Index", "Inventarios", "Articulo")</li>
-                            <li>@Html.ActionLink("Medida", "Index", "Medida")</li>
-                            <li>@Html.ActionLink("TipoArtículo", "Index", "TipoArtículo")</li>
+
+                            <li><a href="@Url.Content("~/Inventarios/Articulo/Index")">Artículos</a></li>
+                            <li><a href="@Url.Content("~/Inventarios/Medida/Index")">Medida</a></li>
+                            <li><a href="@Url.Content("~/Inventarios/TipoArticulo/Index")">Tipo Artículos</a></li>
+                            @*<li>@Html.ActionLink("Medida", "Index", "Medida")</li>
+                            <li>@Html.ActionLink("TipoArtículo", "Index", "TipoArtículo")</li>*@
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -53,11 +56,15 @@
                             Clientes <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Cédula", "Index", "Cédula")</li>
-                            <li>@Html.ActionLink("Cliente", "Index", "Cliente")</li>
-                            <li>@Html.ActionLink("Mascota", "Index", "Mascota")</li>
-                            <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
-                            <li>@Html.ActionLink("Zona", "Index", "Zona")</li>
+                            <li><a href="@Url.Content("~/Clientes/Cedula/Index")">Cédulas</a></li>
+                            <li><a href="@Url.Content("~/Clientes/Cliente/Index")">Clientes</a></li>
+                            <li><a href="@Url.Content("~/Clientes/Mascota/Index")">Mascotas</a></li>
+                            <li><a href="@Url.Content("~/Clientes/Zona/Index")">Zonas</a></li>
+                            @*<li>@Html.ActionLink("Cédula", "Index", "Cédula")</li>
+        <li>@Html.ActionLink("Cliente", "Index", "Cliente")</li>
+        <li>@Html.ActionLink("Mascota", "Index", "Mascota")</li>
+        <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
+        <li>@Html.ActionLink("Zona", "Index", "Zona")</li>*@
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -65,22 +72,26 @@
                             Administración <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Compañia", "Index", "Compañia")</li>
+                            <li><a href="@Url.Content("~/Administracion/Compañia/Index")">Compañias</a></li>
+                            <li><a href="@Url.Content("~/Administracion/Roles/Index")">Roles</a></li>
+                            <li><a href="@Url.Content("~/Administracion/Usuarios/Index")">Usuarios</a></li>
+                            @*<li>@Html.ActionLink("Compañia", "Index", "Compañia")</li>
                             <li>@Html.ActionLink("Roles", "Index", "Roles")</li>
-                            <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
+                            <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>*@
                         </ul>
                     </li>
                     @*<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
         <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
         <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-page="/Logout">@User.Identity.Name (Cerrar sesión)</a></li>
+                    }
                 </ul>
             </div>
         </div>
     </nav>
-    @if (User.Identity.IsAuthenticated)
-    {
-        <li><a asp-page="/Logout">@User.Identity.Name (Cerrar sesión)</a></li>
-    }
+   
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
@@ -113,7 +124,9 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+  
 </body>
+
 </html>
 
 

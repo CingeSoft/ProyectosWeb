@@ -12,6 +12,7 @@
 <div class="row">
     <div class="col-md-4">
         <form method="post">
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Mascotas.CódigoMascota" class="control-label"></label>
@@ -40,15 +41,21 @@
                 <input asp-for="Mascotas.Edad" class="form-control" maxlength="18"required type="number"/>
                 <span asp-validation-for="Mascotas.Edad" class="text-danger"></span>
             </div>
-            <div class="form-group" >
+            <div class="form-group">
                 <label asp-for="Mascotas.Especie" class="control-label"></label>
-                <select asp-for="Mascotas.Especie" contenteditable="true" class="form-control">
+                @*<select asp-for="Mascotas.Especie" class="form-control">
                     <option>Perro</option>
                     <option>Gato</option>
                     <option>Conejo</option>
                     <option>Otros</option>
-                </select>
-             
+                    <option contenteditable="true">Gato</option>
+                </select>*@
+                <input asp-for="Mascotas.Especie" list="Mascotas.Especie" class="form-control"/>
+                <datalist id="Mascotas.Especie">
+                    <option value="Perro">Perro</option>
+                    <option value="Gato">Gato</option>
+                    <option value="Otros">Otros</option>
+                </datalist>
             </div>
             <div class="form-group">
                 <label asp-for="Mascotas.Código" class="control-label"></label>

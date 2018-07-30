@@ -18,7 +18,7 @@ namespace CingeRazor.Models
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string NombreUsuario { get; set; }
 
-        [Required(ErrorMessage = "El campo Contraseñas es requerido")]
+        [Required(ErrorMessage = "El campo Contraseña es requerido")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Contraseñas { get; set; }
 

@@ -1,11 +1,12 @@
 ﻿@page
 @model CingeRazor.Pages.Cliente.IndexModel
 
+
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1 align="center">Admin Clientes</h1>
+<h1 align="center">Clientes</h1>
 <hr border-style:inset />
 
 <p>
@@ -14,6 +15,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Clientes[0].Código)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Clientes[0].Nombre)
             </th>
@@ -50,43 +54,48 @@
     <tbody>
         @foreach (var item in Model.Clientes)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Localidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cédula)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TelefonoCodigoArea)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Teléfono)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Dirección)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaCreacíon)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CódigoCédulaNavigation.CódigoCédula)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CódigoZonaNavigation.CódigoZona)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Código">Modificar</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Código">Detalles</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Código">Borrar</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Código)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cédula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefonoCodigoArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teléfono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dirección)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacíon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CódigoCédulaNavigation.CódigoCédula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CódigoZonaNavigation.CódigoZona)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Código">Modificar</a> |
+                <a asp-page="./Details" asp-route-id="@item.Código">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Código">Borrar</a> |
+                <a asp-page="/Clientes/Mascota" asp-route-codigo="@item.Código">Mascotas 2</a>  |
+                <a href="@Url.Content("~/Clientes/Mascota")">Mascotas</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
