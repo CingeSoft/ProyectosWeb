@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/Clientes/Cliente/Index/{id?}"
 @model CingeRazor.Pages.Cliente.IndexModel
 
 
@@ -16,87 +16,159 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Clientes[0].Código)
+                @Html.DisplayNameFor(model => model.Clientes.Clientes.First().Código)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Clientes[0].Nombre)
+                @Html.DisplayNameFor(model => model.Clientes.Clientes.First().Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Clientes[0].Localidad)
+                @Html.DisplayNameFor(model => model.Clientes.Clientes.First().Localidad)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Clientes[0].Cédula)
+                @Html.DisplayNameFor(model => model.Clientes.Clientes.First().Cédula)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Clientes[0].TelefonoCodigoArea)
+                @Html.DisplayNameFor(model => model.Clientes.Clientes.First().TelefonoCodigoArea)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Clientes[0].Teléfono)
+                @Html.DisplayNameFor(model => model.Clientes.Clientes.First().Teléfono)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Clientes[0].Dirección)
+                @Html.DisplayNameFor(model => model.Clientes.Clientes.First().Dirección)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Clientes[0].Email)
+                @Html.DisplayNameFor(model => model.Clientes.Clientes.First().Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Clientes[0].FechaCreacíon)
+                @Html.DisplayNameFor(model => model.Clientes.Clientes.First().FechaCreacíon)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Clientes[0].CódigoCédulaNavigation)
+                @Html.DisplayNameFor(model => model.Clientes.Clientes.First().CódigoCédulaNavigation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Clientes[0].CódigoZonaNavigation)
+                @Html.DisplayNameFor(model => model.Clientes.Clientes.First().CódigoZonaNavigation)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Clientes)
+        @foreach (var item in Model.Clientes.Clientes)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Código)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Localidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cédula)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TelefonoCodigoArea)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Teléfono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dirección)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaCreacíon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CódigoCédulaNavigation.CódigoCédula)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CódigoZonaNavigation.CódigoZona)
-            </td>
-            <td>
-                <a asp-page="./Index" asp-route-id="@item.Código">Select</a> |
-                <a asp-page="./Edit" asp-route-id="@item.Código">Modificar</a> |
-                <a asp-page="./Details" asp-route-id="@item.Código">Detalles</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Código">Borrar</a> |
-                @*<a asp-page="/Clientes/Mascota" asp-route-codigo="@item.Código">Mascotas 2</a>  |*@
-                @*  <a href="@Url.Content("~/Clientes/Mascota")">Mascotas</a>*@
-            </td>
-        </tr>
+            string selectedRow = "";
+            if (item.Código == Model.ClienteCodigo)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Código)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Localidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cédula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TelefonoCodigoArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Teléfono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dirección)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCreacíon)
+                </td>
+                <td>
+                    @if (item.CódigoCédulaNavigation != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.CódigoCédulaNavigation.CódigoCédula)
+                    }
+                </td>
+                <td>
+                    @if (item.CódigoZonaNavigation != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.CódigoZonaNavigation.NombreZona)
+                    }
+                </td>
+                <td>
+                    <a asp-page="./Index" asp-route-id="@item.Código">Select</a> |
+                    <a asp-page="./Edit" asp-route-id="@item.Código">Modificar</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Código">Detalles</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Código">Borrar</a> |
+                    @*<a asp-page="/Clientes/Mascota" asp-route-codigo="@item.Código">Mascotas 2</a>  |*@
+                    @*<a href="@Url.Content("~/Clientes/Mascota")">Mascotas</a>*@
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+
+@if (Model.Clientes.Mascotas != null)
+{
+    <h1 align="center">Mascotas Del Cliente</h1>
+    <hr border-style:inset />
+    
+       
+        @*<a asp-page="Create">Crear Mascota</a>*@
+   
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Clientes.Mascotas.First().Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Clientes.Mascotas.First().Peso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Clientes.Mascotas.First().Sexo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Clientes.Mascotas.First().Edad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Clientes.Mascotas.First().Especie)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Clientes.Mascotas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Peso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sexo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Especie)
+                </td>
+                <td>
+                    <a asp-page="/Clientes/Mascota/Create" asp-route-id="@item.CódigoMascota">Crear</a> |
+                    <a asp-page="/Clientes/Mascota/Edit" asp-route-id="@item.CódigoMascota">Modificar</a> |
+                    <a asp-page="/Clientes/Mascota/Details" asp-route-id="@item.CódigoMascota">Detalles</a> |
+                    <a asp-page="/Clientes/Mascota/Delete" asp-route-id="@item.CódigoMascota">Borrar</a>
+
+
+                </td>
+            </tr>
+        }
+
+    </table>
+}

@@ -18,7 +18,7 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-header navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="~/images/logo nuevo.png " width="120">
+                <img src="~/images/cinge nombre menu.png " width="120">
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"></a>
 
             </div>
@@ -58,7 +58,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="@Url.Content("~/Clientes/Cedula/Index")">Cédulas</a></li>
                             <li><a href="@Url.Content("~/Clientes/Cliente/Index")">Clientes</a></li>
-                            <li><a href="@Url.Content("~/Clientes/Mascota/Index")">Mascotas</a></li>
+                            @*<li><a href="@Url.Content("~/Clientes/Mascota/Index")">Mascotas</a></li>*@
                             <li><a href="@Url.Content("~/Clientes/Zona/Index")">Zonas</a></li>
                             @*<li>@Html.ActionLink("Cédula", "Index", "Cédula")</li>
         <li>@Html.ActionLink("Cliente", "Index", "Cliente")</li>

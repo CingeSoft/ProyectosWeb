@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/Clientes/Mascota/Edit"
 @model CingeRazor.Pages.Mascota.EditModel
 
 @{
@@ -14,6 +14,7 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Mascotas.CódigoMascota" />
+            <input type="hidden" asp-for="Mascotas.Código" />
             <div class="form-group">
                 <label asp-for="Mascotas.Nombre" class="control-label"></label>
                 <input asp-for="Mascotas.Nombre" class="form-control" />
@@ -51,11 +52,6 @@
                 </datalist>
             </div>
             <div class="form-group">
-                <label asp-for="Mascotas.Código" class="control-label"></label>
-                <select asp-for="Mascotas.Código" class="form-control" asp-items="ViewBag.Código"></select>
-                <span asp-validation-for="Mascotas.Código" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <input type="submit" value="Modificar" class="btn btn-default" />
             </div>
         </form>
@@ -63,7 +59,8 @@
 </div>
 
 <div>
-    <a asp-page="./Index">Regresar</a>
+    <a asp-page="/Clientes/Cliente/Index" asp-route-id="@Model.Mascotas.Código">Regresar</a>
+   @* <a asp-page="Index">Regresar</a>*@
 </div>
 
 @section Scripts {

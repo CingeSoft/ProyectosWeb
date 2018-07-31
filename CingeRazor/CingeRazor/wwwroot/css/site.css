@@ -35,3 +35,7 @@ body {
         display: none;
     }
 }
+
+.success {
+    background-color: #FF0000
+}

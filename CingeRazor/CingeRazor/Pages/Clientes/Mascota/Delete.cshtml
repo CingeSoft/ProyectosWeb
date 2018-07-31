@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/Clientes/Mascota/Delete"
 @model CingeRazor.Pages.Mascota.DeleteModel
 
 @{
@@ -49,10 +49,12 @@
             @Html.DisplayFor(model => model.Mascotas.CódigoNavigation.Código)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Mascotas.CódigoMascota" />
         <input type="submit" value="Borrar" class="btn btn-default" /> |
-        <a asp-page="./Index">Regresar</a>
+        <a asp-page="/Clientes/Cliente/Index" asp-route-id="@Model.Mascotas.Código">Regresar</a>
+        @*<a asp-page="./Index">Regresar</a>*@
+        @*<a asp-page="/Clientes/Cliente/Index" asp-route-id="@Model.Mascotas.Código">Regresar</a>*@
     </form>
 </div>
