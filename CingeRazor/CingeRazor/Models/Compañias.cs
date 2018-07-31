@@ -19,11 +19,9 @@ namespace CingeRazor.Models
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Telefono { get; set; }
 
-        [Required(ErrorMessage = "El campo Fax es requerido")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Fax { get; set; }
 
-        [Required(ErrorMessage = "El campo ApartadoPostal es requerido")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string ApartadoPostal { get; set; }
 
@@ -39,15 +37,13 @@ namespace CingeRazor.Models
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Correo { get; set; }
 
-        [Required(ErrorMessage = "El campo PaginaWeb es requerido")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string PaginaWeb { get; set; }
 
-        [Required(ErrorMessage = "El campo FacturaElectronica es requerido")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string FacturaElectronica { get; set; }
 
-        [Required(ErrorMessage = "El campo DireccionLogo es requerido")]
+        [DisplayName("Logo")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string DireccionLogo { get; set; }
     }
