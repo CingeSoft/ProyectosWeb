@@ -42,5 +42,6 @@ namespace CingeRazor.Pages.Cliente
 
             return RedirectToPage("./Index");
         }
+
     }
 }

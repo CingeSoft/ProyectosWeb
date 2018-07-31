@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CingeRazor.Models;
+using CingeRazor.Pages.Mascota;
+
 
 namespace CingeRazor.Pages.Cliente
 {
@@ -18,17 +20,19 @@ namespace CingeRazor.Pages.Cliente
             _context = context;
         }
 
+
         public IList<Models.Clientes> Clientes { get;set; }
+        public IList<Models.Mascotas> Mascotas { get; set; }
 
         public async Task OnGetAsync()
         {
             Clientes = await _context.Clientes
                 .Include(c => c.CódigoCédulaNavigation)
                 .Include(c => c.CódigoZonaNavigation).ToListAsync();
-
-
-           
-
+                 
         }
+       
+
+
     }
 }   

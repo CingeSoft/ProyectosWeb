@@ -89,11 +89,12 @@
                 @Html.DisplayFor(modelItem => item.CódigoZonaNavigation.CódigoZona)
             </td>
             <td>
+                <a asp-page="./Index" asp-route-id="@item.Código">Select</a> |
                 <a asp-page="./Edit" asp-route-id="@item.Código">Modificar</a> |
                 <a asp-page="./Details" asp-route-id="@item.Código">Detalles</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Código">Borrar</a> |
-                <a asp-page="/Clientes/Mascota" asp-route-codigo="@item.Código">Mascotas 2</a>  |
-                <a href="@Url.Content("~/Clientes/Mascota")">Mascotas</a>
+                @*<a asp-page="/Clientes/Mascota" asp-route-codigo="@item.Código">Mascotas 2</a>  |*@
+                @*  <a href="@Url.Content("~/Clientes/Mascota")">Mascotas</a>*@
             </td>
         </tr>
         }

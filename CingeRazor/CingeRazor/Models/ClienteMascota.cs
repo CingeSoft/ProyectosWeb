@@ -8,30 +8,20 @@ namespace CingeRazor.Models
    
     public class ClienteMascota
     {
-        public class ClientesViewModel
+        public class ClientesIndexModel
         {
-            public int CódigoMascota { get; set; }
-            public string Nombre { get; set; }
-            public int Peso { get; set; }
-            public string Sexo { get; set; }
-            public int Edad { get; set; }
-            public string Especie { get; set; }
-            public Clientes Código { get; set; }
+            public IEnumerable<Clientes> Clientes { get; set; }
+            public IEnumerable<Mascotas> Mascotas { get; set; }
 
         }
-        public IList<ClientesViewModel> ClientesVM { get; set; }
-
-        //public async Task OnGetAsync()
+        //public class InstructorIndexData
         //{
-        //    ClientesVM = await _context.Clientes
-        //            .Select(p => new ClientesViewModel
-        //            {
-        //                CódigoMascota = p.CourseID,
-        //                Nombre = p.Nombre,
-        //                Peso = p.Peso,
-        //                Sexo = p.Department.Name
-        //            }).ToListAsync();
+        //    public IEnumerable<Instructor> Instructors { get; set; }
+        //    public IEnumerable<Course> Courses { get; set; }
+        //    public IEnumerable<Enrollment> Enrollments { get; set; }
         //}
+
+
 
 
     }
