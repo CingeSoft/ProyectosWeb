@@ -1,7 +1,5 @@
 
 Guardar logo de la compañia
-Redirrecionar Menú
-Cambiar Campo de otros
 Que se pueda meter mascotas desde clientes
 
 

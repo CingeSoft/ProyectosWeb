@@ -18,7 +18,7 @@ namespace CingeRazor.Pages.Cliente
             _context = context;
         }
 
-        public Clientes Clientes { get; set; }
+        public Models.Clientes Clientes { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {

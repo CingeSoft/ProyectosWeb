@@ -18,13 +18,17 @@ namespace CingeRazor.Pages.Cliente
             _context = context;
         }
 
-        public IList<Clientes> Clientes { get;set; }
+        public IList<Models.Clientes> Clientes { get;set; }
 
         public async Task OnGetAsync()
         {
             Clientes = await _context.Clientes
                 .Include(c => c.CódigoCédulaNavigation)
                 .Include(c => c.CódigoZonaNavigation).ToListAsync();
+
+
+           
+
         }
     }
-}
+}   
