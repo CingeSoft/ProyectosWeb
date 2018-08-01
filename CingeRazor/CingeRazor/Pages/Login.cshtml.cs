@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
@@ -35,7 +36,11 @@ namespace CingeRazor.Pages
                 identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, loginData.Username));
                 identity.AddClaim(new Claim(ClaimTypes.Name, loginData.Username));
                 var principal = new ClaimsPrincipal(identity);
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties { IsPersistent = loginData.RememberMe });
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, 
+                        new AuthenticationProperties {
+                            ExpiresUtc = DateTime.UtcNow.AddMinutes(5),
+                            IsPersistent = loginData.RememberMe,
+                            AllowRefresh = true });
                 return RedirectToPage("Index");
             }
             else
