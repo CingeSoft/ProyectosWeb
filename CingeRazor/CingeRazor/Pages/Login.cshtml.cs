@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Web;
 
 namespace CingeRazor.Pages
 {
@@ -17,7 +18,8 @@ namespace CingeRazor.Pages
         {
             _context = context;
         }
-        
+       
+
         [BindProperty]
         public LoginData loginData { get; set; }
 
@@ -36,6 +38,7 @@ namespace CingeRazor.Pages
                 identity.AddClaim(new Claim(ClaimTypes.Name, loginData.Username));
                 var principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties { IsPersistent = loginData.RememberMe });
+               
                 return RedirectToPage("Index");
             }
             else
@@ -44,8 +47,7 @@ namespace CingeRazor.Pages
                 return Page();
             }
         }
-
-        public class LoginData
+                   public class LoginData
         {
             [Required(ErrorMessage = "El campo Usuario es requerido")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]

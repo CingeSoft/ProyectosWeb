@@ -66,7 +66,7 @@ namespace CingeRazor.Pages.Mascota
                 }
             }
 
-            return RedirectToPage("/Clientes/Cliente/Index/", new { id = Mascotas.Código });
+            return RedirectToPage("/Clientes/Cliente/Index", new { id = Mascotas.Código });
         }
 
         private bool MascotasExists(string id)

@@ -114,12 +114,16 @@
 
 @if (Model.Clientes.Mascotas != null)
 {
-    <h1 align="center">Mascotas Del Cliente</h1>
-    <hr border-style:inset />
-    
-       
-        @*<a asp-page="Create">Crear Mascota</a>*@
-   
+    <h1>Mascotas Del Cliente</h1>
+
+
+
+    <p>
+        <a asp-page="Create">Crear Mascota</a>
+
+    </p>
+
+    @*<li><a href="@Url.Content("~/Clientes/Mascota/Index")">Mascotas</a></li>*@
 
     <table class="table">
         <tr>
@@ -160,7 +164,7 @@
                     @Html.DisplayFor(modelItem => item.Especie)
                 </td>
                 <td>
-                    <a asp-page="/Clientes/Mascota/Create" asp-route-id="@item.CódigoMascota">Crear</a> |
+                    @*<a asp-page="/Clientes/Mascota/Create" asp-route-id="@item.CódigoMascota">Crear</a> |*@
                     <a asp-page="/Clientes/Mascota/Edit" asp-route-id="@item.CódigoMascota">Modificar</a> |
                     <a asp-page="/Clientes/Mascota/Details" asp-route-id="@item.CódigoMascota">Detalles</a> |
                     <a asp-page="/Clientes/Mascota/Delete" asp-route-id="@item.CódigoMascota">Borrar</a>
