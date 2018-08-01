@@ -20,12 +20,12 @@ namespace CingeRazor.Pages.Cliente
             _context = context;
         }
         
-        public ClienteMascotas Clientes { get; set; }
+        public ClienteMascota Clientes { get; set; }
         public string ClienteCodigo { get; set; }
 
         public async Task OnGetAsync(string id)
         {
-            Clientes = new ClienteMascotas();
+            Clientes = new ClienteMascota();
             Clientes.Clientes = await _context.Clientes
                   .Include(c => c.CódigoCédulaNavigation)
                   .Include(c => c.CódigoZonaNavigation)

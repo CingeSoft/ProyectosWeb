@@ -13,8 +13,6 @@ using CingeRazor.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
-
-
 namespace CingeRazor
 {
     public class Startup
@@ -82,6 +80,5 @@ namespace CingeRazor
             app.UseAuthentication();
             app.UseMvc();
         }
-
     }
 }
