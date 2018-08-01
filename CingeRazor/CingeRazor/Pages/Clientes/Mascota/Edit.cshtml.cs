@@ -21,6 +21,7 @@ namespace CingeRazor.Pages.Mascota
 
         [BindProperty]
         public Mascotas Mascotas { get; set; }
+        public string Cliente { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -65,7 +66,7 @@ namespace CingeRazor.Pages.Mascota
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Clientes/Cliente/Index", new { id = Mascotas.Código });
         }
 
         private bool MascotasExists(string id)

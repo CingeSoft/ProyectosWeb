@@ -37,7 +37,8 @@ namespace CingeRazor.Pages.Mascota
             _context.Mascotas.Add(Mascotas);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            //return RedirectToPage("./Index");
+            return RedirectToPage("/Clientes/Cliente/Index", new { id = Mascotas.Código });
         }
     }
 }
