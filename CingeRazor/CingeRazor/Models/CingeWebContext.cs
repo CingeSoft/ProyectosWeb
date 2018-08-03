@@ -19,12 +19,16 @@ namespace CingeRazor.Models
         public virtual DbSet<Cedulas> Cedulas { get; set; }
         public virtual DbSet<Clientes> Clientes { get; set; }
         public virtual DbSet<Compañias> Compañias { get; set; }
+        public virtual DbSet<InventFactura> InventFactura { get; set; }
+        public virtual DbSet<InventFacturaLinea> InventFacturaLinea { get; set; }
+        public virtual DbSet<InventFacturaMascota> InventFacturaMascota { get; set; }
         public virtual DbSet<Mascotas> Mascotas { get; set; }
         public virtual DbSet<Medidas> Medidas { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<TipoArticulos> TipoArticulos { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Zonas> Zonas { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,7 +52,7 @@ namespace CingeRazor.Models
 
                 entity.Property(e => e.FechaCreacíon).HasColumnType("datetime");
 
-                entity.Property(e => e.MargenUtilida).HasColumnType("numeric(18, 8)");
+                entity.Property(e => e.MargenUtilida).HasColumnType("numeric(18, 4)");
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -196,12 +200,155 @@ namespace CingeRazor.Models
                     .HasMaxLength(50);
             });
 
+            modelBuilder.Entity<InventFactura>(entity =>
+            {
+                entity.HasKey(e => e.Consecutivo);
+
+                entity.Property(e => e.Consecutivo)
+                    .HasMaxLength(50)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Cliente)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.CreadoFecha).HasColumnType("datetime");
+
+                entity.Property(e => e.CreadoPor)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Descuento).HasColumnType("numeric(18, 4)");
+
+                entity.Property(e => e.Direccion)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Fecha).HasColumnType("datetime");
+
+                entity.Property(e => e.FormaPago)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.Identificacion)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Impuesto).HasColumnType("numeric(18, 4)");
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Subtotal).HasColumnType("numeric(18, 4)");
+
+                entity.Property(e => e.Telefono)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.TipoIdentificacion)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.Total).HasColumnType("numeric(18, 4)");
+
+                entity.HasOne(d => d.ClienteNavigation)
+                    .WithMany(p => p.InventFactura)
+                    .HasForeignKey(d => d.Cliente)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_InventFactura_Clientes");
+
+                entity.HasOne(d => d.TipoIdentificacionNavigation)
+                    .WithMany(p => p.InventFactura)
+                    .HasForeignKey(d => d.TipoIdentificacion)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_InventFactura_Cedulas");
+            });
+
+            modelBuilder.Entity<InventFacturaLinea>(entity =>
+            {
+                entity.HasKey(e => new { e.Consecutivo, e.Linea });
+
+                entity.Property(e => e.Consecutivo).HasMaxLength(50);
+
+                entity.Property(e => e.Articulo)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.Cantidad).HasColumnType("decimal(18, 4)");
+
+                entity.Property(e => e.Descuento).HasColumnType("numeric(18, 4)");
+
+                entity.Property(e => e.DescuentoPorcentaje).HasColumnType("numeric(18, 4)");
+
+                entity.Property(e => e.Impuesto).HasColumnType("numeric(18, 4)");
+
+                entity.Property(e => e.ImpuestoPorcentaje).HasColumnType("numeric(18, 4)");
+
+                entity.Property(e => e.Mascota)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.PrecioTotal).HasColumnType("numeric(18, 4)");
+
+                entity.Property(e => e.PrecioUnitario).HasColumnType("numeric(18, 4)");
+
+                entity.Property(e => e.TotalLinea).HasColumnType("numeric(18, 4)");
+
+                entity.HasOne(d => d.ArticuloNavigation)
+                    .WithMany(p => p.InventFacturaLinea)
+                    .HasForeignKey(d => d.Articulo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_InventFacturaLinea_Articulos");
+
+                entity.HasOne(d => d.ConsecutivoNavigation)
+                    .WithMany(p => p.InventFacturaLinea)
+                    .HasForeignKey(d => d.Consecutivo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_InventFacturaLinea_InventFactura");
+
+                entity.HasOne(d => d.InventFacturaMascota)
+                    .WithMany(p => p.InventFacturaLinea)
+                    .HasForeignKey(d => new { d.Consecutivo, d.Mascota })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_InventFacturaLinea_InventFacturaMascota");
+            });
+
+            modelBuilder.Entity<InventFacturaMascota>(entity =>
+            {
+                entity.HasKey(e => new { e.Consecutivo, e.Nombre });
+
+                entity.Property(e => e.Consecutivo).HasMaxLength(50);
+
+                entity.Property(e => e.Nombre).HasMaxLength(200);
+
+                entity.HasOne(d => d.ConsecutivoNavigation)
+                    .WithMany(p => p.InventFacturaMascota)
+                    .HasForeignKey(d => d.Consecutivo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_InventFacturaMascota_InventFactura");
+
+                entity.HasOne(d => d.NombreNavigation)
+                    .WithMany(p => p.InventFacturaMascota)
+                    .HasForeignKey(d => d.Nombre)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_InventFacturaMascota_Mascotas");
+            });
+
             modelBuilder.Entity<Mascotas>(entity =>
             {
-                entity.HasKey(e => e.CódigoMascota);
+                entity.HasKey(e => e.Nombre);
 
-                entity.Property(e => e.CódigoMascota)
-                    .HasMaxLength(20)
+                entity.Property(e => e.Nombre)
+                    .HasMaxLength(200)
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.Código)
@@ -213,10 +360,6 @@ namespace CingeRazor.Models
                 entity.Property(e => e.Especie)
                     .IsRequired()
                     .HasMaxLength(20);
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasMaxLength(200);
 
                 entity.Property(e => e.Peso).HasColumnType("numeric(18, 2)");
 

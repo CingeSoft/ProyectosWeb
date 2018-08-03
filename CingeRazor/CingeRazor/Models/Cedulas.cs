@@ -10,6 +10,7 @@ namespace CingeRazor.Models
         public Cedulas()
         {
             Clientes = new HashSet<Clientes>();
+            InventFactura = new HashSet<InventFactura>();
         }
         [Required(ErrorMessage = "El campo CódigoCédula es requerido")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
@@ -19,5 +20,6 @@ namespace CingeRazor.Models
         public string Cédula { get; set; }
 
         public ICollection<Clientes> Clientes { get; set; }
+        public ICollection<InventFactura> InventFactura { get; set; }
     }
 }

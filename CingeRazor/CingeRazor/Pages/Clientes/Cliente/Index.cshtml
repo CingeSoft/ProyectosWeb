@@ -118,7 +118,7 @@
     <hr border-style:inset />
 
 
-    @*<a asp-page="Create">Crear Mascota</a>*@
+    <a asp-page="/Clientes/Mascota/Create">Crear Mascota</a>
 
 
     <table class="table">
@@ -160,12 +160,10 @@
                     @Html.DisplayFor(modelItem => item.Especie)
                 </td>
                 <td>
-                    <a asp-page="/Clientes/Mascota/Create" asp-route-id="@item.CódigoMascota">Crear</a> |
-                    <a asp-page="/Clientes/Mascota/Edit" asp-route-id="@item.CódigoMascota">Modificar</a> |
-                    <a asp-page="/Clientes/Mascota/Details" asp-route-id="@item.CódigoMascota">Detalles</a> |
-                    <a asp-page="/Clientes/Mascota/Delete" asp-route-id="@item.CódigoMascota">Borrar</a>
-
-
+                    @*<a asp-page="/Clientes/Mascota/Create" asp-route-id="@item.Nombre">Crear</a> |*@
+                    <a asp-page="/Clientes/Mascota/Edit" asp-route-id="@item.Nombre">Modificar</a> |
+                    <a asp-page="/Clientes/Mascota/Details" asp-route-id="@item.Nombre">Detalles</a> |
+                    <a asp-page="/Clientes/Mascota/Delete" asp-route-id="@item.Nombre">Borrar</a>
                 </td>
             </tr>
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace CingeRazor.Models
 {
@@ -12,8 +11,6 @@ namespace CingeRazor.Models
         }
 
         public string Consecutivo { get; set; }
-        [Required(ErrorMessage = "El campo Nombre es requerido")]
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Nombre { get; set; }
 
         public InventFactura ConsecutivoNavigation { get; set; }

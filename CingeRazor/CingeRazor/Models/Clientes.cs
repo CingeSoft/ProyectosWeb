@@ -9,6 +9,7 @@ namespace CingeRazor.Models
     {
         public Clientes()
         {
+            InventFactura = new HashSet<InventFactura>();
             Mascotas = new HashSet<Mascotas>();
         }
         [Required(ErrorMessage = "El campo Código es requerido")]
@@ -58,5 +59,6 @@ namespace CingeRazor.Models
         public Cedulas CódigoCédulaNavigation { get; set; }
         public Zonas CódigoZonaNavigation { get; set; }
         public ICollection<Mascotas> Mascotas { get; set; }
+        public ICollection<InventFactura> InventFactura { get; set; }
     }
 }

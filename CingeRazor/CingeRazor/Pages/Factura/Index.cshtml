@@ -1,0 +1,121 @@
+﻿@page
+@model CingeRazor.Pages.Factura.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].Identificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].Subtotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].Descuento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].Impuesto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].CreadoPor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].CreadoFecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].FormaPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].ClienteNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventFactura[0].TipoIdentificacionNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.InventFactura) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Identificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subtotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descuento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Impuesto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreadoPor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreadoFecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormaPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClienteNavigation.Código)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoIdentificacionNavigation.CódigoCédula)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Consecutivo">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Consecutivo">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Consecutivo">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

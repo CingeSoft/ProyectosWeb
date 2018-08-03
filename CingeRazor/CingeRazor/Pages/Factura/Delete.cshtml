@@ -1,0 +1,113 @@
+﻿@page
+@model CingeRazor.Pages.Factura.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>InventFactura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.Fecha)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.Fecha)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.Identificacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.Identificacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.Telefono)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.Telefono)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.Direccion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.Direccion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.Subtotal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.Subtotal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.Descuento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.Descuento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.Impuesto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.Impuesto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.Total)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.Total)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.CreadoPor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.CreadoPor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.CreadoFecha)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.CreadoFecha)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.FormaPago)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.FormaPago)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.ClienteNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.ClienteNavigation.Código)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InventFactura.TipoIdentificacionNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InventFactura.TipoIdentificacionNavigation.CódigoCédula)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="InventFactura.Consecutivo" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

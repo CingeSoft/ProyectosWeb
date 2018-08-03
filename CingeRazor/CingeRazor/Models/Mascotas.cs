@@ -7,9 +7,13 @@ namespace CingeRazor.Models
 {
     public partial class Mascotas
     {
-        [Required(ErrorMessage = "El campo CódigoMascota es requerido")]
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string CódigoMascota { get; set; }
+        public Mascotas()
+        {
+            InventFacturaMascota = new HashSet<InventFacturaMascota>();
+        }
+        //[Required(ErrorMessage = "El campo CódigoMascota es requerido")]
+        //[DisplayFormat(ConvertEmptyStringToNull = false)]
+        //public string CódigoMascota { get; set; }
 
         [Required(ErrorMessage = "El campo Nombre es requerido")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
@@ -36,5 +40,6 @@ namespace CingeRazor.Models
         public string Código { get; set; }
 
         public Clientes CódigoNavigation { get; set; }
+        public ICollection<InventFacturaMascota> InventFacturaMascota { get; set; }
     }
 }

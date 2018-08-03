@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CingeRazor.Models;
 
-namespace CingeRazor.Pages.Mascota
+namespace CingeRazor.Pages.Factura
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace CingeRazor.Pages.Mascota
         }
 
         [BindProperty]
-        public Mascotas Mascotas { get; set; }
+        public InventFactura InventFactura { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -28,10 +28,11 @@ namespace CingeRazor.Pages.Mascota
                 return NotFound();
             }
 
-            Mascotas = await _context.Mascotas
-                .Include(m => m.CódigoNavigation).FirstOrDefaultAsync(m => m.Nombre == id);
+            InventFactura = await _context.InventFactura
+                .Include(i => i.ClienteNavigation)
+                .Include(i => i.TipoIdentificacionNavigation).FirstOrDefaultAsync(m => m.Consecutivo == id);
 
-            if (Mascotas == null)
+            if (InventFactura == null)
             {
                 return NotFound();
             }
@@ -45,15 +46,15 @@ namespace CingeRazor.Pages.Mascota
                 return NotFound();
             }
 
-            Mascotas = await _context.Mascotas.FindAsync(id);
+            InventFactura = await _context.InventFactura.FindAsync(id);
 
-            if (Mascotas != null)
+            if (InventFactura != null)
             {
-                _context.Mascotas.Remove(Mascotas);
+                _context.InventFactura.Remove(InventFactura);
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("/Clientes/Cliente/Index", new { id = Mascotas.Código });
+            return RedirectToPage("./Index");
         }
     }
 }

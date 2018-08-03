@@ -7,6 +7,10 @@ namespace CingeRazor.Models
 {
     public partial class Articulos
     {
+        public Articulos()
+        {
+            InventFacturaLinea = new HashSet<InventFacturaLinea>();
+        }
         [Required(ErrorMessage = "El campo Código es requerido")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Código { get; set; }
@@ -51,7 +55,8 @@ namespace CingeRazor.Models
 
 
 
-
+       
+        public ICollection<InventFacturaLinea> InventFacturaLinea { get; set; }
 
 
     }

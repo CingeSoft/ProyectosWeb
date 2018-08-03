@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CingeRazor.Models;
 
-namespace CingeRazor.Pages.Mascota
+namespace CingeRazor.Pages.Factura
 {
     public class EditModel : PageModel
     {
@@ -20,8 +20,7 @@ namespace CingeRazor.Pages.Mascota
         }
 
         [BindProperty]
-        public Mascotas Mascotas { get; set; }
-        public string Cliente { get; set; }
+        public InventFactura InventFactura { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -30,14 +29,16 @@ namespace CingeRazor.Pages.Mascota
                 return NotFound();
             }
 
-            Mascotas = await _context.Mascotas
-                .Include(m => m.CódigoNavigation).FirstOrDefaultAsync(m => m.Nombre == id);
+            InventFactura = await _context.InventFactura
+                .Include(i => i.ClienteNavigation)
+                .Include(i => i.TipoIdentificacionNavigation).FirstOrDefaultAsync(m => m.Consecutivo == id);
 
-            if (Mascotas == null)
+            if (InventFactura == null)
             {
                 return NotFound();
             }
-            ViewData["Código"] = new SelectList(_context.Clientes, "Código", "Código");
+           ViewData["Cliente"] = new SelectList(_context.Clientes, "Código", "Código");
+           ViewData["TipoIdentificacion"] = new SelectList(_context.Cedulas, "CódigoCédula", "CódigoCédula");
             return Page();
         }
 
@@ -48,7 +49,7 @@ namespace CingeRazor.Pages.Mascota
                 return Page();
             }
 
-            _context.Attach(Mascotas).State = EntityState.Modified;
+            _context.Attach(InventFactura).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +57,7 @@ namespace CingeRazor.Pages.Mascota
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MascotasExists(Mascotas.Nombre))
+                if (!InventFacturaExists(InventFactura.Consecutivo))
                 {
                     return NotFound();
                 }
@@ -66,12 +67,12 @@ namespace CingeRazor.Pages.Mascota
                 }
             }
 
-            return RedirectToPage("/Clientes/Cliente/Index", new { id = Mascotas.Código});
+            return RedirectToPage("./Index");
         }
 
-        private bool MascotasExists(string id)
+        private bool InventFacturaExists(string id)
         {
-            return _context.Mascotas.Any(e => e.Nombre == id);
+            return _context.InventFactura.Any(e => e.Consecutivo == id);
         }
     }
 }
