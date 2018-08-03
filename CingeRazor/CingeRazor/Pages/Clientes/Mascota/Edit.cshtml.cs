@@ -37,7 +37,7 @@ namespace CingeRazor.Pages.Mascota
             {
                 return NotFound();
             }
-           ViewData["Código"] = new SelectList(_context.Clientes, "Código", "Código");
+            ViewData["Código"] = new SelectList(_context.Clientes, "Código", "Código");
             return Page();
         }
 

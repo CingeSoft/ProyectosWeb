@@ -12,11 +12,7 @@ namespace CingeWeb.Models
         public DateTime FechaCreacion { get; set; }
         public DateTime UltimoLogeo { get; set; }
         public string Email { get; set; }
+
         public Roles IdRolNavigation { get; set; }
-       
-
-
     }
-    
-
 }

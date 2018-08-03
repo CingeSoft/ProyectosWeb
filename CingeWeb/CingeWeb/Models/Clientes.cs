@@ -5,6 +5,12 @@ namespace CingeWeb.Models
 {
     public partial class Clientes
     {
+        public Clientes()
+        {
+            InventFactura = new HashSet<InventFactura>();
+            Mascotas = new HashSet<Mascotas>();
+        }
+
         public string Código { get; set; }
         public string Nombre { get; set; }
         public string Localidad { get; set; }
@@ -19,5 +25,7 @@ namespace CingeWeb.Models
 
         public Cedulas CódigoCédulaNavigation { get; set; }
         public Zonas CódigoZonaNavigation { get; set; }
+        public ICollection<InventFactura> InventFactura { get; set; }
+        public ICollection<Mascotas> Mascotas { get; set; }
     }
 }

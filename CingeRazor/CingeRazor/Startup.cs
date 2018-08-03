@@ -76,7 +76,7 @@ namespace CingeRazor
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            
             app.UseAuthentication();
             app.UseMvc();
         }

@@ -8,11 +8,13 @@ namespace CingeWeb.Models
         public Cedulas()
         {
             Clientes = new HashSet<Clientes>();
+            InventFactura = new HashSet<InventFactura>();
         }
 
         public string CódigoCédula { get; set; }
         public string Cédula { get; set; }
 
         public ICollection<Clientes> Clientes { get; set; }
+        public ICollection<InventFactura> InventFactura { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace CingeRazor.Models
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Zonas> Zonas { get; set; }
 
-          protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Articulos>(entity =>
             {

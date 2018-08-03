@@ -13,7 +13,7 @@ namespace CingeRazor.Models
         }
         [Required(ErrorMessage = "El campo IdRol es requerido")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-         
+
         public string IdRol { get; set; }
         [Required(ErrorMessage = "El campo NombreRol es requerido")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]

@@ -20,7 +20,7 @@ namespace CingeRazor.Pages.Mascota
 
         public IActionResult OnGet()
         {
-        ViewData["Código"] = new SelectList(_context.Clientes, "Código", "Código");
+            ViewData["Código"] = new SelectList(_context.Clientes, "Código", "Código");
             return Page();
         }
 

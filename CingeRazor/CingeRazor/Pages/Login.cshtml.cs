@@ -17,6 +17,7 @@ namespace CingeRazor.Pages
         public LoginModel(CingeRazor.Models.CingeWebContext context)
         {
             _context = context;
+            //_session = httpContextAccessor.HttpContext.Session;
         }
         
         [BindProperty]
@@ -41,6 +42,11 @@ namespace CingeRazor.Pages
                             ExpiresUtc = DateTime.UtcNow.AddMinutes(5),
                             IsPersistent = loginData.RememberMe,
                             AllowRefresh = true });
+
+                Models.Compañias companias = await _context.Compañias.FirstOrDefaultAsync();
+
+                //_session.SetString("Compania", companias != null ? companias.IdCompañia : "");
+
                 return RedirectToPage("Index");
             }
             else
@@ -66,5 +72,6 @@ namespace CingeRazor.Pages
             [Display(Name = "Recordarme")]
             public bool RememberMe { get; set; }
         }
+        
     }
 }

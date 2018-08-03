@@ -38,12 +38,12 @@
             <div class="form-group">
                 <label asp-for="Mascotas.Especie" class="control-label"></label>
                 @*<select asp-for="Mascotas.Especie" class="form-control">
-                <option>Perro</option>
-                <option>Gato</option>
-                <option>Conejo</option>
-                <option>Otros</option>
-                <option contenteditable="true">Gato</option>
-            </select>*@
+                        <option>Perro</option>
+                        <option>Gato</option>
+                        <option>Conejo</option>
+                        <option>Otros</option>
+                        <option contenteditable="true">Gato</option>
+                    </select>*@
                 <input asp-for="Mascotas.Especie" list="Mascotas.Especie" class="form-control" />
                 <datalist id="Mascotas.Especie">
                     <option value="Perro">Perro</option>
@@ -60,7 +60,7 @@
 
 <div>
     <a asp-page="/Clientes/Cliente/Index" asp-route-id="@Model.Mascotas.Código">Regresar</a>
-   @* <a asp-page="Index">Regresar</a>*@
+    @* <a asp-page="Index">Regresar</a>*@
 </div>
 
 @section Scripts {

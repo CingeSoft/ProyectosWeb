@@ -5,6 +5,11 @@ namespace CingeWeb.Models
 {
     public partial class Articulos
     {
+        public Articulos()
+        {
+            InventFacturaLinea = new HashSet<InventFacturaLinea>();
+        }
+
         public string Código { get; set; }
         public string Nombre { get; set; }
         public string TipoArticulo { get; set; }
@@ -17,5 +22,6 @@ namespace CingeWeb.Models
 
         public Medidas CódigoUnidadNavigation { get; set; }
         public TipoArticulos TipoArticuloNavigation { get; set; }
+        public ICollection<InventFacturaLinea> InventFacturaLinea { get; set; }
     }
 }

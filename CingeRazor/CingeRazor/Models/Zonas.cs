@@ -11,6 +11,8 @@ namespace CingeRazor.Models
         {
             Clientes = new HashSet<Clientes>();
         }
+        [Key]
+        
         [Required(ErrorMessage = "El campo CódigoZona es requerido")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string CódigoZona { get; set; }
