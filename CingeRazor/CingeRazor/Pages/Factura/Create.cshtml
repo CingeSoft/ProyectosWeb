@@ -12,21 +12,112 @@
 <hr />
 <div class="row">
     <div class="form-inline">
+
+
+
         <form method="post">
+            <table id="encabezado" class="table">
+
+                <tr style="font-size:15px;">
+                    @*<th>Id Venta <input style="color:red; font-size:12px;" class="form-control" type="text" id="id_venta" readonly /></th>
+                <th>
+                    Fecha
+                    <input style="color:red;font-size:20px;" class="form-control" type="text" id="id_fecha" readonly value="@DateTime.Now.Year-@DateTime.Now.Month-@DateTime.Now.Day @DateTime.Now.Hour:@DateTime.Now.Minute:@DateTime.Now.Second" />
+
+                </th>*@
+                    <th>
+                        <label asp-for="InventFactura.Consecutivo" class="control-label"></label>
+                        <input asp-for="InventFactura.Consecutivo" class="form-control"/>
+                    </th>
+                    <th>
+                        <label asp-for="InventFactura.Fecha" class="control-label"></label>
+                        <input asp-for="InventFactura.Fecha" class="form-control"/>
+                    </th>
+                    <td>
+                        Detalles del Cliente
+                        <a href="~/Venta/ObtenerClientes" rel="pop-up">
+                            <input  type="button" name="enlace_cliente" value="Obtener Cliente" class="form-control" />
+                        </a>
+                    </td>
+
+            </table>
+            <table id="encabezado" class="table">
+
+                <tr style="font-size:15px;">
+                    @*<th>Id Venta <input style="color:red; font-size:12px;" class="form-control" type="text" id="id_venta" readonly /></th>
+                <th>
+                    Fecha
+                    <input style="color:red;font-size:20px;" class="form-control" type="text" id="id_fecha" readonly value="@DateTime.Now.Year-@DateTime.Now.Month-@DateTime.Now.Day @DateTime.Now.Hour:@DateTime.Now.Minute:@DateTime.Now.Second" />
+
+                </th>
+                <th>
+                    <label asp-for="InventFactura.Consecutivo" class="control-label"></label>
+                    <input asp-for="InventFactura.Consecutivo" class="form-control" />
+                </th>
+                <th>
+                    <label asp-for="InventFactura.Fecha" class="control-label"></label>
+                    <input asp-for="InventFactura.Fecha" class="form-control" />
+                </th>*@
+                    <th>
+                        <label asp-for="InventFactura.Cliente" class="control-label"></label>
+                        <select asp-for="InventFactura.Cliente" class="form-control" asp-items="ViewBag.Cliente"></select>
+                    </th>
+                    <th>
+                        <label asp-for="InventFactura.Nombre" class="control-label"></label>
+                        <input asp-for="InventFactura.Nombre" class="form-control" />
+                        <span asp-validation-for="InventFactura.Nombre" class="text-danger"></span>
+                    </th>
+                    <th>
+                        <label asp-for="InventFactura.TipoIdentificacion" class="control-label"></label>
+                        <select asp-for="InventFactura.TipoIdentificacion" class="form-control" asp-items="ViewBag.TipoIdentificacion"></select>
+                    </th>
+                    <th>
+                        <label asp-for="InventFactura.Identificacion" class="control-label"></label>
+                        <input asp-for="InventFactura.Identificacion" class="form-control" />
+                        <span asp-validation-for="InventFactura.Identificacion" class="text-danger"></span>
+                    </th>
+            </table>
+            <table id="encabezado" class="table">
+
+                <tr style="font-size:15px;">
+                    @*<th>Id Venta <input style="color:red; font-size:12px;" class="form-control" type="text" id="id_venta" readonly /></th>
+        <th>
+            Fecha
+            <input style="color:red;font-size:20px;" class="form-control" type="text" id="id_fecha" readonly value="@DateTime.Now.Year-@DateTime.Now.Month-@DateTime.Now.Day @DateTime.Now.Hour:@DateTime.Now.Minute:@DateTime.Now.Second" />
+
+        </th>*@
+                    <th>
+                        <label asp-for="InventFactura.Email" class="control-label"></label>
+                        <input asp-for="InventFactura.Email" class="form-control" />
+                        <span asp-validation-for="InventFactura.Email" class="text-danger"></span>
+                    </th>
+                    <th>
+                        <label asp-for="InventFactura.Telefono" class="control-label"></label>
+                        <input asp-for="InventFactura.Telefono" class="form-control" />
+                        <span asp-validation-for="InventFactura.Telefono" class="text-danger"></span>
+                    </th>
+                    <th>
+                        <label asp-for="InventFactura.Direccion" class="control-label"></label>
+                        <input asp-for="InventFactura.Direccion" class="form-control" />
+                        <span asp-validation-for="InventFactura.Direccion" class="text-danger"></span>
+                    </th>
+
+</table>
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="InventFactura.Consecutivo" class="control-label"></label>
-                <input  asp-for="InventFactura.Consecutivo" class="form-control" />
+                <input asp-for="InventFactura.Consecutivo" class="form-control" />
                 <span asp-validation-for="InventFactura.Consecutivo" class="text-danger"></span>
             </div>
-            @*<div class="form-horizontal">
+            <div class="form-horizontal">
                 <label asp-for="InventFactura.Fecha" class="control-label"></label>
                 <input asp-for="InventFactura.Fecha" class="form-control" />
                 <span asp-validation-for="InventFactura.Fecha" class="text-danger"></span>
-            </div>*@
+            </div>
             <div class="">
                 <label asp-for="InventFactura.Cliente" class="control-label"></label>
-                <select asp-for="InventFactura.Cliente" class ="form-control" asp-items="ViewBag.Cliente"></select>
+                <select asp-for="InventFactura.Cliente" class="form-control" asp-items="ViewBag.Cliente"></select>
             </div>
             <div class="form-group">
                 <label asp-for="InventFactura.Nombre" class="control-label"></label>
@@ -35,7 +126,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="InventFactura.TipoIdentificacion" class="control-label"></label>
-                <select asp-for="InventFactura.TipoIdentificacion" class ="form-control" asp-items="ViewBag.TipoIdentificacion"></select>
+                <select asp-for="InventFactura.TipoIdentificacion" class="form-control" asp-items="ViewBag.TipoIdentificacion"></select>
             </div>
             <div class="form-group">
                 <label asp-for="InventFactura.Identificacion" class="control-label"></label>
@@ -56,7 +147,7 @@
                 <label asp-for="InventFactura.Direccion" class="control-label"></label>
                 <input asp-for="InventFactura.Direccion" class="form-control" />
                 <span asp-validation-for="InventFactura.Direccion" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="InventFactura.Subtotal" class="control-label"></label>
                 <input asp-for="InventFactura.Subtotal" class="form-control" />
@@ -88,9 +179,17 @@
                 <span asp-validation-for="InventFactura.CreadoFecha" class="text-danger"></span>
             </div>
             <div class="form-group">
+                @*<label asp-for="InventFactura.FormaPago" class="control-label"></label>
+        <input asp-for="InventFactura.FormaPago" class="form-control" />
+        <span asp-validation-for="InventFactura.FormaPago" class="text-danger"></span>*@
                 <label asp-for="InventFactura.FormaPago" class="control-label"></label>
-                <input asp-for="InventFactura.FormaPago" class="form-control" />
-                <span asp-validation-for="InventFactura.FormaPago" class="text-danger"></span>
+                <select asp-for="InventFactura.FormaPago" class="form-control">
+                <option>Efectivo</option>
+                <option>Tarjeta</option>
+                <option>Tranferencia</option>
+           
+           
+        </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
