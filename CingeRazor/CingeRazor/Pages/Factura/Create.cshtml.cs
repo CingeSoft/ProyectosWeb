@@ -38,10 +38,13 @@ namespace CingeRazor.Pages.Factura
                 return Page();
             }
             InventFactura.Fecha = DateTime.Now;
+            InventFactura.CreadoFecha = DateTime.Now;
             _context.InventFactura.Add(InventFactura);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
+
+
     }
 }

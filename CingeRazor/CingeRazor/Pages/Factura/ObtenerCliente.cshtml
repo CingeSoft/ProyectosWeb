@@ -1,0 +1,97 @@
+﻿@page
+@model ObtenerClienteModel
+@{
+    ViewBag.Title = "BuscarPorCodigo";
+    Layout = null;
+}
+
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+@*<script>
+        $(document).ready(function () {
+
+            $("#tbcliente tbody tr").dblclick(function () {
+                var Cliente = {};
+                var n, a, m;
+                n = Cliente.Codigo = $(this).children().eq('0').text();
+                a = Cliente.DatosPersonales = $(this).children().eq('1').text() + " " + $(this).children().eq('2').text();
+                m = Cliente.Identificacion = $(this).children().eq('3').text();
+                console.info(a, n, m);
+                window.opener.obtenerCliente(Cliente);
+                window.close();
+
+
+
+            });
+        });
+    </script>*@
+
+<div class="panel panel-default">
+    <div class="panel-heading">Buscar Clientes en el Sistema</div>
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            <div class="form-horizontal">
+                <h2 style="text-align:center; font-family:Arial; font-weight:700;">Buscar Cliente por:</h2>
+                <fieldset>
+                    <div class="row" style="padding-bottom:8px;">
+                        <div class="form-group col-md-3">
+                            @Html.Label("Nombre")
+                            <div class="col-md-8">
+                                @Html.TextBox("txtnombre", null, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.Label("Cédula")
+                            <div class="col-md-8">
+                                @Html.TextBox("txtcédula", null, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.Label("Email")
+                            <div class="col-md-9">
+                                @Html.TextBox("txtEmail", null, new { @class = "form-control", })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.Label("Télefono")
+                            <div class="col-md-9">
+                                @Html.TextBox("txtTélefono", null, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <input type="submit" value="Buscar" />
+        }
+    </div>
+</div>
+
+<table class="table table-striped" id="tbcliente">
+
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Cédula</th>
+            <th>Teléfono</th>
+            <th>Dirrecion</th>
+            <th>Email</th>
+       </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var objCliente in Models)
+            {
+                <tr>
+                    <td>@objCliente.IdCliente</td>
+                    <td>@objCliente.Nombre</td>
+                    <td>@objCliente.Appaterno @objCliente.Apmaterno</td>
+                    <td>@objCliente.Dni</td>
+                    <td>@objCliente.Direccion</td>
+                    <td>@objCliente.Telefono</td>
+                </tr>
+            }*@
+    </tbody>
+</table>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/jquery/jquery.js"></script>
