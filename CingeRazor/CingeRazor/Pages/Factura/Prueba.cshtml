@@ -1,75 +1,182 @@
 ﻿@page
-@model PruebaModel
+@model CingeRazor.Pages.Articulo.IndexModel
+
 @{
+    ViewData["Title"] = "Index";
 }
-<script>
-    $(document).ready(function () {
-        //obtenemos el valor de los input
 
-        $('#adicionar').click(function () {
-            var nombre = document.getElementById("nombre").value;
-            var apellido = document.getElementById("apellido").value;
-            var cedula = document.getElementById("cedula").value;
-            var i = 1; //contador para asignar id al boton que borrara la fila
-            var fila = '<tr id="row' + i + '"><td>' + nombre + '</td><td>' + apellido + '</td><td>' + cedula + '</td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">Quitar</button></td></tr>'; //esto seria lo que contendria la fila
+<h1 align="center">Artículos</h1>
+<hr border-style:inset />
 
-            i++;
-
-            $('#mytable tr:first').after(fila);
-            $("#adicionados").text(""); //esta instruccion limpia el div adicioandos para que no se vayan acumulando
-            var nFilas = $("#mytable tr").length;
-            $("#adicionados").append(nFilas - 1);
-            //le resto 1 para no contar la fila del header
-            document.getElementById("apellido").value = "";
-            document.getElementById("cedula").value = "";
-            document.getElementById("nombre").value = "";
-            document.getElementById("nombre").focus();
-        });
-        $(document).on('click', '.btn_remove', function () {
-            var button_id = $(this).attr("id");
-            //cuando da click obtenemos el id del boton
-            $('#row' + button_id + '').remove(); //borra la fila
-            //limpia el para que vuelva a contar las filas de la tabla
-            $("#adicionados").text("");
-            var nFilas = $("#mytable tr").length;
-            $("#adicionados").append(nFilas - 1);
-        });
-    });
-
-</script>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<div class="container">
-    <form>
-        <div class="form-group">
-            <p>
-                <label>Entre su Nombre:</label> <br>
-                <input id="nombre" class="form-control" type="text" placeholder="Nombre..."><br>
-            </p>
-            <p>
-                <label>Entre su Apellido:</label> <br>
-                <input id="apellido" class="form-control" type="text" placeholder="Apellido..."><br>
-            </p>
-            <p>
-                <label>Entre su C&eacute;dula:</label> <br>
-                <input id="cedula" class="form-control" type="text" placeholder="Cedúla"> <br>
-            </p>
-            <button id="adicionar" class="btn btn-success" type="button">Adicionar a la tabla</button>
-        </div>
-    </form>
-
-    <p>
-        Elementos en la Tabla:
-        <div id="adicionados"></div>
-    </p>
-    <table id="mytable" class="table table-bordered table-hover ">
+<p>
+    <a asp-page="Create">Crear Artículo</a>
+</p>
+<table class="table">
+    <thead>
         <tr>
-            <th>Nobmre</th>
-            <th>Apellidos</th>
-            <th>C&eacute;dula</th>
-            <th>Eliminar</th>
-
+            <th>
+                @Html.DisplayNameFor(model => model.Articulos[0].Código)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Articulos[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Articulos[0].CostoPromedio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Articulos[0].MargenUtilida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Articulos[0].PrecioVenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Articulos[0].PagaImpuesto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Articulos[0].FechaCreacíon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Articulos[0].CódigoUnidadNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Articulos[0].TipoArticuloNavigation)
+            </th>
+            <th></th>
         </tr>
-    </table>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Articulos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Código)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostoPromedio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MargenUtilida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioVenta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PagaImpuesto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCreacíon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CódigoUnidadNavigation.CódigoUnidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoArticuloNavigation.TipoArticulo)
+                </td>
+               
+            </tr>
+        }
 
-</div>
+    </tbody>
+</table>
+
+
+@*<html>
+    <head>*@
+
+@*<meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+    </style>*@
+@*</head>
+    <body>
+
+        <h2>MENSAJE PARA J</h2>
+
+        <!-- Trigger/Open The Modal -->
+        <button id="myBtn">DALE CLIC</button>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Hello Joaqui Soy Hazel</p>
+            </div>
+
+        </div>
+
+        <script>
+            // Get the modal
+            var modal = document.getElementById('myModal');
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+
+    </body>
+    </html>*@

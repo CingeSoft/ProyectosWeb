@@ -5,27 +5,35 @@
     Layout = null;
 }
 
-@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
-@*<script>
-        $(document).ready(function () {
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
 
-            $("#tbcliente tbody tr").dblclick(function () {
-                var Cliente = {};
-                var n, a, m;
-                n = Cliente.Codigo = $(this).children().eq('0').text();
-                a = Cliente.DatosPersonales = $(this).children().eq('1').text() + " " + $(this).children().eq('2').text();
-                m = Cliente.Identificacion = $(this).children().eq('3').text();
-                console.info(a, n, m);
-                window.opener.obtenerCliente(Cliente);
-                window.close();
+        $("#tbcliente tbody tr").dblclick(function () {
+            var Cliente = {};
+            var n, a, m;
+            n = Cliente.Codigo = $(this).children().eq('0').text();
+            a = Cliente.DatosPersonales = $(this).children().eq('1').text() + " " + $(this).children().eq('2').text();
+            m = Cliente.Identificacion = $(this).children().eq('3').text();
+            console.info(a, n, m);
+            window.opener.obtenerCliente(Cliente);
+            window.close();
 
 
 
-            });
         });
-    </script>*@
+    });
+</script>
 
 <div class="panel panel-default">
+    <div id='myModal' class='modal fade in'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContent'></div>
+            </div>
+        </div>
+    </div>
+
     <div class="panel-heading">Buscar Clientes en el Sistema</div>
     <div class="panel-body">
         @using (Html.BeginForm())
@@ -77,7 +85,7 @@
             <th>Teléfono</th>
             <th>Dirrecion</th>
             <th>Email</th>
-       </tr>
+        </tr>
     </thead>
     <tbody>
         @*@foreach (var objCliente in Models)
@@ -93,5 +101,5 @@
             }*@
     </tbody>
 </table>
-<script src="~/js/bootstrap.min.js"></script>
-<script src="~/jquery/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
