@@ -40,7 +40,7 @@ namespace CingeRazor.Pages
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, 
                         new AuthenticationProperties {
                             ExpiresUtc = DateTime.UtcNow.AddMinutes(5),
-                            IsPersistent = loginData.RememberMe,
+                            IsPersistent = true,
                             AllowRefresh = true });
 
                 Models.Compañias companias = await _context.Compañias.FirstOrDefaultAsync();
