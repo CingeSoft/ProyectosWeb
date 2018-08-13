@@ -45,6 +45,10 @@ namespace CingeRazor.Pages.Factura
             return RedirectToPage("./Index");
         }
 
-
+        public Models.Clientes ObtenerCliente(string cliente)
+        {
+            Models.Clientes clienteTable = new Clientes();
+            return clienteTable;
+        }
     }
 }
