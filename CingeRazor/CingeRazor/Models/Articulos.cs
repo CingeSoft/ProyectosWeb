@@ -51,14 +51,8 @@ namespace CingeRazor.Models
 
         public Medidas CódigoUnidadNavigation { get; set; }
         public TipoArticulos TipoArticuloNavigation { get; set; }
-
-
-
-
-       
+               
         public ICollection<InventFacturaLinea> InventFacturaLinea { get; set; }
-
-
     }
 
 

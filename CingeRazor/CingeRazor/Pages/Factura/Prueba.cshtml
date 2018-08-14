@@ -4,83 +4,114 @@
 @{
     ViewData["Title"] = "Index";
 }
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+    <div>
+    </div>
+    <input type="button" onclick="GetCutomerName('1')" value="Get Name" />
+    <div id="content"></div>
+</body>
+</html>
+<script>
+    function GetCutomerName(id) {
+        $.ajax({
+            url: "/Demo/GetcustomerId",
+            type: "get", //send it through get method
+            data: { "id": id },
+            success: function (data) {
+                //Do Something
+                $("#content").html(data);
+            },
+            error: function (xhr) {
+                //Do Something to handle error
+            }
+        });
+    }
+</script>
+<input name="boton_cargar" id="boton_cargar" type="button" value="Cargar contenido" />
 
-<h1 align="center">Artículos</h1>
-<hr border-style:inset />
+<div name="div_dinamico" id="div_dinamico" class="div_dinamico"></div>
+@*<h1 align="center">Artículos</h1>
+    <hr border-style:inset />
 
-<p>
-    <a asp-page="Create">Crear Artículo</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Articulos[0].Código)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Articulos[0].Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Articulos[0].CostoPromedio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Articulos[0].MargenUtilida)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Articulos[0].PrecioVenta)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Articulos[0].PagaImpuesto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Articulos[0].FechaCreacíon)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Articulos[0].CódigoUnidadNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Articulos[0].TipoArticuloNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Articulos)
-        {
+    <p>
+        <a asp-page="Create">Crear Artículo</a>
+    </p>
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Código)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CostoPromedio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MargenUtilida)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrecioVenta)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PagaImpuesto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaCreacíon)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CódigoUnidadNavigation.CódigoUnidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TipoArticuloNavigation.TipoArticulo)
-                </td>
-               
+                <th>
+                    @Html.DisplayNameFor(model => model.Articulos[0].Código)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articulos[0].Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articulos[0].CostoPromedio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articulos[0].MargenUtilida)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articulos[0].PrecioVenta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articulos[0].PagaImpuesto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articulos[0].FechaCreacíon)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articulos[0].CódigoUnidadNavigation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articulos[0].TipoArticuloNavigation)
+                </th>
+                <th></th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Articulos)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Código)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CostoPromedio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MargenUtilida)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrecioVenta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PagaImpuesto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaCreacíon)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CódigoUnidadNavigation.CódigoUnidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoArticuloNavigation.TipoArticulo)
+                    </td>
 
-    </tbody>
-</table>
+                </tr>
+            }
+
+        </tbody>
+    </table>*@
 
 
 @*<html>

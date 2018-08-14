@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using CingeRazor.Models;
 
 namespace CingeRazor.Pages.Factura
@@ -43,12 +44,6 @@ namespace CingeRazor.Pages.Factura
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
-        }
-
-        public Models.Clientes ObtenerCliente(string cliente)
-        {
-            Models.Clientes clienteTable = new Clientes();
-            return clienteTable;
         }
     }
 }

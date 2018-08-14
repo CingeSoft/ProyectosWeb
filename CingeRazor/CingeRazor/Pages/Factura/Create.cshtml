@@ -1,15 +1,10 @@
 ﻿@page
 @model CingeRazor.Pages.Factura.CreateModel
-@*<script src="~/lib/js/jquery-3.3.1.min.js"></script>
-    <script src="~/lib/js/bootstrap.js"></script>
+<script src="~/lib/jquery-3.3.1.min.js"></script>
+@*    <script src="~/lib/js/bootstrap.js"></script>
     <link href="~/css/bootstrap.css" />*@
 <link href="~/lib/bootstrap/dist/css/bootstrap.css" />
-@*<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-</head>*@
+
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Pages/Shared/_Layout.cshtml";
@@ -18,13 +13,79 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+        $("#codigoProducto").change(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Inventarios/Articulo/SeleccionarArticulo",
+                data: { idProducto: $(this).val() },
+                contentType: "application/json",
+                dataType: "json",
+                success: function (mensaje) {
+                    console.log(mensaje);
+                    $.each(mensaje, function (i, item) {
+                        console.log(i);
+                        console.log(item);
+                        switch (i) { 
+                            case "nombre":
+                                $("#nombreproducto").val(item);
+                                break;
+                            case "precioVenta":
+                                $("#precio").val(item);
+                                break;
+                        }
+                        //recibir datos json
+                    });
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $("#codigoCliente").change(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/Clientes/Cliente/SeleccionarCliente",
+                    data: { idCliente: $(this).val() },
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (mensaje) {
+                        console.log(mensaje);
+                        $.each(mensaje, function (i, item) {
+                            console.log(i);
+                            console.log(item);
+                            switch (i) {
+                                case "nombre":
+                                    $("#nombreCliente").val(item);
+                                    break;
+                                case "cédula":
+                                    $("#cédulaCliente").val(item);
+                                    break;
+                                case "email":
+                                    $("#emailCliente").val(item);
+                                    break;
+                                case "teléfono":
+                                    $("#teléfonoCliente").val(item);
+                                    break;
+                                case "dirección":
+                                    $("#direcciónCliente").val(item);
+                                    break;
+                                case "códigoCédula":
+                                    $("#tipoIdCliente").val(item);
+                                    break;
+                                
+                            }
+                            //recibir datos json
+                        });
+                    }
+                });
+            });
+        });
 
         $("a[rel='pop-up']").click(function () {
             var caracteristicas = "height=550 ,width=1000, scrollTo, resizable=1, scrollbars=1, location=0";
             nueva = window.open(this.href, 'popup', caracteristicas);
             return false;
         });
-        botones
+
         $("#finalizar").click(function () {
             //alertify.alert("Boton Iniciado");
             //console.info('hola');
@@ -41,70 +102,50 @@
                         "',Cantidad:'" + $(this).find('td').eq(2).text() +
                         "',Descuento:'" + $(this).find('td').eq(5).text() +
                         "',SubTotal:'" + $(this).find('td').eq(4).text() + "'}"
-                  
+
                 }
                 i = 1;
             });
             envio += "]}";
 
             var json = eval("(" + envio + ')');
-
-            //alertify.alert("INGRESE DATOS");
-            //console.info(json);
-
-            //$.ajax({
-            //    url: "GuardarVenta",
-            //    data: JSON.stringify(json),
-            //    type: "POST",
-            //    async: false,//this makes the ajax-call blocking
-            //    contentType: 'application/json;charset=UTF-8',
-            //    dataType: 'json',
-            //    success: function (response) {
-            //        alertify.alert(response);
-            //        valid = response.valid;
-            //    },
-            //    error: function (error) {
-            //        alertify.alert(error);
-
-            //    }
-            //});
         });
 
     });
-    //variables
     var total = 0;
     var valor = 0;
     var subtotal = 0;
     function obtenerCliente(Cliente) {
-        $("#codigoCliente").val(Cliente.Codigo);
+        $("#codigoCliente").val(Cliente.Codigo).trigger('change');
     }
     function obtenerProducto(Articulo) {
-        $("#codigoProducto").val(Articulo.Codigo);
+        $("#codigoProducto").val(Articulo.Codigo).trigger('change');
+        //cargarDatosArticulo();
     }
-   
+
     function fn_agregar() {
 
         cadena = "<tr>"
-        cadena = cadena + "<td>" + $("#idproducto").val() + "</td>";
+        cadena = cadena + "<td>" + $("#codigoProducto").val() + "</td>";
         cadena = cadena + "<td>" + $("#nombreproducto").val() + "</td>";
         cadena = cadena + "<td>" + $("#cantidad").val() + "</td>";
         cadena = cadena + "<td>" + $("#precio").val() + "</td>";
-          
-       
+
+
         var y = 0;
         var x = 0;
         var descuento = 0;
         y = $("#cantidad").val();
         x = $("#precio").val();
-            
-        subtotal = (x * y);
-        descuento = ($("#precio").val() * ($("#descuento").val() / 100));
-        impuesto = subtotal * 0.13;
+
+        subtotal = (x * y).toFixed(5);
+        descuento = ($("#precio").val() * ($("#descuento").val() / 100)).toFixed(5);
+        impuesto = (subtotal * 0.13).toFixed(5);
         totallinea = subtotal - descuento + impuesto;
 
         cadena = cadena + "<td>" + subtotal + "</td>"
         cadena = cadena + "<td>" + descuento + "</td>";
-        cadena = cadena + "<td>" + impuesto  + "</td>";
+        cadena = cadena + "<td>" + impuesto + "</td>";
         cadena = cadena + "<td>" + totallinea + "</td>";
         cadena = cadena + "<td><a class ='elimina'><button class='btn btn-danger' type='button'><span class='fa fa-remove'></span>Eliminar</button></a></td>";
         $("#detalle tbody").append(cadena);
@@ -113,10 +154,9 @@
         limpiar();
     };
     function limpiar() {
+        $("#codigoProducto").val("");
         $("#nombreproducto").val("");
-        $("#idproducto").val("");
         $("#precio").val("");
-        $("#ListaProducto").val("");
         $("#cantidad").val("1");
         $("#descuento").val("0");
     }
@@ -144,13 +184,13 @@
         });
 
         $("#detalle tbody tr").each(function (index) {
-            precio = parseFloat($(this).find('td').eq(columnNames.indexOf("Cantidad")).text()) * parseFloat($(this).find('td').eq(columnNames.indexOf("PrecioUnitario")).text());
+            precio = parseFloat($(this).find('td').eq(columnNames.indexOf("PrecioTotal")).text());
             precioTotal = precioTotal + precio;
             descuento = 0;
             descuento = parseFloat($(this).find('td').eq(columnNames.indexOf("Descuento")).text());
             descuentoTotal = descuentoTotal + descuento;
             impuesto = 0;
-            impuesto = ((precio - descuento) * 0.13);
+            impuesto = parseFloat($(this).find('td').eq(columnNames.indexOf("Impuesto")).text());
             impuestoTotal = impuestoTotal + impuesto;
 
             totalLinea = precio - descuento + impuesto;
@@ -174,39 +214,7 @@
         });
     };
 
-
 </script>
-<script>
-    $(function () {
-        $.ajaxSetup({ cache: false });
-
-        $("a[data-modal]").on("click", function (e) {
-            // hide dropdown if any (this is used wehen invoking modal from link in bootstrap dropdown )
-            //$(e.target).closest('.btn-group').children('.dropdown-toggle').dropdown('toggle');
-
-            $("#myModalContent").load(this.href, function () {
-                $("#myModal").modal({
-                    /*backdrop: 'static',*/
-                    keyboard: true
-                }, "show");
-                bindForm(this);
-            });
-            return false;
-        });
-    });
-    function CalcularPrecioTotal() {
-        document.getElementById('PrecioTotal').value = parseFloat(document.getElementById('Cantidad').value) * parseFloat(document.getElementById('PrecioUnitario').value);
-        //(Costo * (1 + MargenUtilidad / 100)) 
-    }
-    function CalcularImpuesto() {
-        
-        document.getElementById('Impuesto').value = parseFloat(document.getElementById('PrecioTotal').value * 0.13);
-        //(Costo * (1 + MargenUtilidad / 100)) 
-    }
-</script>
-
-
-
 
 <h3>Facturación</h3>
 
@@ -239,57 +247,47 @@
         </table>
         <table id="encabezado" class="table">
             <tr style="font-size:15px;">
-                @*<th>Id Venta <input style="color:red; font-size:12px;" class="form-control" type="text" id="id_venta" readonly /></th>
-                <th>
-                    Fecha
-                    <input style="color:red;font-size:20px;" class="form-control" type="text" id="id_fecha" readonly value="@DateTime.Now.Year-@DateTime.Now.Month-@DateTime.Now.Day @DateTime.Now.Hour:@DateTime.Now.Minute:@DateTime.Now.Second" />
-                </th>
-                <th>
-                    <label asp-for="InventFactura.Consecutivo" class="control-label"></label>
-                    <input asp-for="InventFactura.Consecutivo" class="form-control" />
-                </th>
-                <th>
-                    <label asp-for="InventFactura.Fecha" class="control-label"></label>
-                    <input asp-for="InventFactura.Fecha" class="form-control" />
-                </th>*@
+               
+                    @*<th>
+                        <label asp-for="InventFactura.Consecutivo" class="control-label"></label>
+                        <input asp-for="InventFactura.Consecutivo" class="form-control" />
+                    </th>
+                    <th>
+                        <label asp-for="InventFactura.Fecha" class="control-label"></label>
+                        <input asp-for="InventFactura.Fecha" class="form-control" />
+                    </th>*@
 
                 <th>
                     <label asp-for="InventFactura.Nombre" class="control-label"></label>
-                    <input asp-for="InventFactura.Nombre" class="form-control" />
+                    <input asp-for="InventFactura.Nombre"  class="form-control" id="nombreCliente"/>
                     <span asp-validation-for="InventFactura.Nombre" class="text-danger"></span>
                 </th>
                 <th>
                     <label asp-for="InventFactura.TipoIdentificacion" class="control-label"></label>
-                    <select asp-for="InventFactura.TipoIdentificacion" class="form-control" asp-items="ViewBag.TipoIdentificacion"></select>
+                    <select asp-for="InventFactura.TipoIdentificacion" class="form-control" id="tipoIdCliente" asp-items="ViewBag.TipoIdentificacion"></select>
                 </th>
                 <th>
                     <label asp-for="InventFactura.Identificacion" class="control-label"></label>
-                    <input asp-for="InventFactura.Identificacion" class="form-control" />
+                    <input asp-for="InventFactura.Identificacion" class="form-control" id="cédulaCliente"/>
                     <span asp-validation-for="InventFactura.Identificacion" class="text-danger"></span>
                 </th>
                 <th>
                     <label asp-for="InventFactura.Email" class="control-label"></label>
-                    <input asp-for="InventFactura.Email" class="form-control" />
+                    <input asp-for="InventFactura.Email"  class="form-control" id="emailCliente"/>
                     <span asp-validation-for="InventFactura.Email" class="text-danger"></span>
                 </th>
         </table>
         <table id="encabezado" class="table">
             <tr style="font-size:15px;">
-                @*<th>Id Venta <input style="color:red; font-size:12px;" class="form-control" type="text" id="id_venta" readonly /></th>
-        <th>
-            Fecha
-            <input style="color:red;font-size:20px;" class="form-control" type="text" id="id_fecha" readonly value="@DateTime.Now.Year-@DateTime.Now.Month-@DateTime.Now.Day @DateTime.Now.Hour:@DateTime.Now.Minute:@DateTime.Now.Second" />
-
-        </th>*@
-
+               
                 <th>
                     <label asp-for="InventFactura.Telefono" class="control-label"></label>
-                    <input asp-for="InventFactura.Telefono" class="form-control" />
+                    <input asp-for="InventFactura.Telefono"  class="form-control" id="teléfonoCliente"/>
                     <span asp-validation-for="InventFactura.Telefono" class="text-danger"></span>
                 <th>
                 <th>
                     <label asp-for="InventFactura.Direccion" class="control-label"></label>
-                    <input asp-for="InventFactura.Direccion" class="form-control" />
+                    <input asp-for="InventFactura.Direccion"  class="form-control" id="direcciónCliente"/>
                     <span asp-validation-for="InventFactura.Direccion" class="text-danger"></span>
                 </th>
                 <th>
@@ -310,24 +308,22 @@
                 </td>
 
                 @*<div class="form-group col-md-12">*@
-                    @*<div class="col-md-9 dropdown">
+                @*<div class="col-md-9 dropdown">
                         @Html.DropDownList("ListaProducto", ViewBag.ListaProducto as SelectList, "Seleccione un Producto", htmlAttributes: new { @class = "form-control" })
                     </div>*@
-                    @*<div class="col-md-3">
-                        <button class="btn btn-warning btn-lg" name="btnproductos" id="btnproductos">Seleccionar</button>
-                    </div>
-                </div>*@
+                @*<div class="col-md-3">
+                            <button class="btn btn-warning btn-lg" name="btnproductos" id="btnproductos">Seleccionar</button>
+                        </div>
+                    </div>*@
 
-
-
-
-</table>
+                
+        </table>
         <h3>Detalle Facturación </h3>
         <form action="javascript:fn_agregar()" ; method="post" id="frm_usu" class="form-horizontal">
             <table class="table">
                 <tr style="font-size:15px;">
 
-                    <td>Artículo<input style="font-size:12px; font-weight:700;" type="text" id="idproducto" class="form-control" required /></td>
+                    <td>Artículo<input style="font-size:12px; font-weight:700;" type="text" id="codigoProducto" class="form-control" required /></td>
                     <td>Nombre<input style="font-size:12px; font-weight:700;" class="form-control" type="text" id="nombreproducto" required /></td>
                     <td>Cantidad <input style="font-size:12px; font-weight:700;" class="form-control" type="number" id="cantidad" value="1" required /></td>
                     <td>PrecioUnitario <input style="font-size:12px; font-weight:700;" class="form-control" type="number" id="precio" required /></td>
@@ -339,8 +335,7 @@
         <table id="detalle" class="lista table" border="0">
             <thead style="font-size:12px;">
                 <tr class="bg-success">
-                    @*<td>Detalle de la Compra</td>*@
-                </tr>
+               </tr>
                 <tr class="bg-success">
                     <th width="5%">Artículo </th>
                     <th width="20%">Nombre</th>
@@ -355,13 +350,6 @@
             <tbody></tbody>
 
         </table>
-        @*<table class="table">*@
-            @*<tr>
-                <td style="float:right;font-size:20px;">Total a Pagar</td>
-                <th></th>
-                <td><input style="font-size:20px; font-weight:700;" class="form-control" type="number" name="TotalaPagar" id="TotalaPagar" required readonly /></td>
-            </tr>*@
-        @*</table>*@
         <html>
         <head>
             <meta charset="utf-8">
@@ -369,300 +357,140 @@
             <title>JS Bin</title>
         </head>
         @*<body>
+                
+                   </table>*@
+                    @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @*<div class="form-group">
+                            <label asp-for="InventFactura.Consecutivo" class="control-label"></label>
+                            <input asp-for="InventFactura.Consecutivo" class="form-control" />
+                            <span asp-validation-for="InventFactura.Consecutivo" class="text-danger"></span>
+                        </div>
+                        <div class="form-horizontal">
+                            <label asp-for="InventFactura.Fecha" class="control-label"></label>
+                            <input asp-for="InventFactura.Fecha" class="form-control" />
+                            <span asp-validation-for="InventFactura.Fecha" class="text-danger"></span>
+                        </div>
+                        <div class="">
+                            <label asp-for="InventFactura.Cliente" class="control-label"></label>
+                            <select asp-for="InventFactura.Cliente" class="form-control" asp-items="ViewBag.Cliente"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="InventFactura.Nombre" class="control-label"></label>
+                            <input asp-for="InventFactura.Nombre" class="form-control" />
+                            <span asp-validation-for="InventFactura.Nombre" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="InventFactura.TipoIdentificacion" class="control-label"></label>
+                            <select asp-for="InventFactura.TipoIdentificacion" class="form-control" asp-items="ViewBag.TipoIdentificacion"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="InventFactura.Identificacion" class="control-label"></label>
+                            <input asp-for="InventFactura.Identificacion" class="form-control" />
+                            <span asp-validation-for="InventFactura.Identificacion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="InventFactura.Email" class="control-label"></label>
+                            <input asp-for="InventFactura.Email" class="form-control" />
+                            <span asp-validation-for="InventFactura.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="InventFactura.Telefono" class="control-label"></label>
+                            <input asp-for="InventFactura.Telefono" class="form-control" />
+                            <span asp-validation-for="InventFactura.Telefono" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="InventFactura.Direccion" class="control-label"></label>
+                            <input asp-for="InventFactura.Direccion" class="form-control" />
+                            <span asp-validation-for="InventFactura.Direccion" class="text-danger"></span>
+                        </div>*@
+                    <table id="encabezado" class="table">
+                        <tr style="font-size:15px;">
+                            <th>
+                                <label asp-for="InventFactura.Subtotal" class="control-label"></label>
+                                <input asp-for="InventFactura.Subtotal" class="form-control" id="SubTotal" readonly />
+                                <span asp-validation-for="InventFactura.Subtotal" class="text-danger"></span>
+                            <th>
+                            <th>
 
-        <form onsubmit="addPerson(event)">
-            <section class="group">
-                <input type="text" id="Articulo" placeholder="Articulo" />
-                <input type="text" id="Nombre" placeholder="Nombre" />
-                <input type="number" onkeyup="CalcularPrecioTotal();" id="Cantidad" placeholder="Cantidad" />
-                <input type="number" onkeyup="CalcularPrecioTotal();" id="PrecioUnitario" placeholder="PrecioUnitario" />
-                <input type="number" onkeyup="CalcularImpuesto()" id="PrecioTotal" placeholder="PrecioTotal" />
-                <input type="number" id="Descuento" placeholder="Descuento" />
-                <input type="number" ;id="Impuesto" placeholder="Impuesto" />
-                <input type="number" id="TotalLinea" placeholder="TotalLinea" />
-            </section>
-            <button type="submit">Agregar</button>
+                                <label asp-for="InventFactura.Descuento" class="control-label"></label>
+                                <input asp-for="InventFactura.Descuento" class="form-control" id="DescuentoTotal" readonly />
+                                <span asp-validation-for="InventFactura.Descuento" class="text-danger"></span>
+                            <th>
+                            <th>
 
-        </form>*@
+                                <label asp-for="InventFactura.Impuesto" class="control-label"></label>
+                                <input asp-for="InventFactura.Impuesto" class="form-control" id="ImpuestoTotal" readonly />
+                                <span asp-validation-for="InventFactura.Impuesto" class="text-danger"></span>
+                            <th>
+                            <th>
 
-        @*<table style="display: inline-block" id="Detalle">*@
-        @*<thead>*@
-        @*<tr>
-            <th>#</th>
-            <th>Articulo</th>
-            <th>Nombre</th>
-            <th>Cantidad</th>
-            <th>PrecioUnitario</th>
-            <th>PrecioTotal</th>
-            <th>Descuento</th>
-            <th>Impuesto</th>
-            <th>TotalLinea</th>
-
-        </tr>*@
-        @*</thead>*@
-        @*<tbody></tbody>*@
-        @*</table>*@
-        @*</body>
-        </html>*@
-
-        @*<form onsubmit="addPerson(event)">
-        <table class="table">
-            <tr style="font-size:15px;">
-                <td>Articulo <input style="font-size:10px; font-weight:700;" class="form-control" type="text" id="Articulo" required /></td>
-                <td>Nombre <input style="font-size:10px; font-weight:700;" type="text" id="Nombre " class="form-control" required /></td>
-                <td>Cantidad <input style="font-size:10px; font-weight:700;" type="number" id="Cantidad" class="form-control" required /></td>
-                <td>PrecioUnitario <input style="font-size:10px; font-weight:700;" class="form-control" type="number" id="PrecioUnitario" value="Ingrese Precio Unitario" onfocus="this.value = '';" required /></td>
-                <td>PrecioTotal <input style="font-size:10px; font-weight:700;" class="form-control" type="number" id="PrecioTotal" value="Ingrese Precio Total" onfocus="this.value = '';" required /></td>
-                <td>Descuento <input style="font-size:10px; font-weight:700;" class="form-control" type="number" id="Descuento" value="0" onfocus="this.value = '';" required /></td>
-                <td colspan="2"><input class="form-control" type="submit" name="agregar" id="agregar" value="Agregar" /></td>
-                @*@*@*<button type="submit">Agregar</button>*@
-                @*@*  @**@
-                @*</tr>*@
-                @*</table>
-                </form>*@
-                @*<table id="detalle" class="lista table" border="0">
-                    <thead style="font-size:15px;">
-                        <tr class="bg-danger">
-                            <td>Detalle</td>
-                </tr>
-                <tr class="bg-success">
-                    <th>Articulo</th>
-                    <th>Nombre</th>
-                    <th>Cantidad</th>
-                    <th>PrecioUnitario</th>
-                    <th>PrecioTotal</th>
-                    <th>Descuento</th>
-                    <th>Impuesto</th>
-                    <th>TotalLinea</th>
-                </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>*@
-                @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                @*<div class="form-group">
-                    <label asp-for="InventFactura.Consecutivo" class="control-label"></label>
-                    <input asp-for="InventFactura.Consecutivo" class="form-control" />
-                    <span asp-validation-for="InventFactura.Consecutivo" class="text-danger"></span>
-                </div>
-                <div class="form-horizontal">
-                    <label asp-for="InventFactura.Fecha" class="control-label"></label>
-                    <input asp-for="InventFactura.Fecha" class="form-control" />
-                    <span asp-validation-for="InventFactura.Fecha" class="text-danger"></span>
-                </div>
-                <div class="">
-                    <label asp-for="InventFactura.Cliente" class="control-label"></label>
-                    <select asp-for="InventFactura.Cliente" class="form-control" asp-items="ViewBag.Cliente"></select>
-                </div>
-                <div class="form-group">
-                    <label asp-for="InventFactura.Nombre" class="control-label"></label>
-                    <input asp-for="InventFactura.Nombre" class="form-control" />
-                    <span asp-validation-for="InventFactura.Nombre" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="InventFactura.TipoIdentificacion" class="control-label"></label>
-                    <select asp-for="InventFactura.TipoIdentificacion" class="form-control" asp-items="ViewBag.TipoIdentificacion"></select>
-                </div>
-                <div class="form-group">
-                    <label asp-for="InventFactura.Identificacion" class="control-label"></label>
-                    <input asp-for="InventFactura.Identificacion" class="form-control" />
-                    <span asp-validation-for="InventFactura.Identificacion" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="InventFactura.Email" class="control-label"></label>
-                    <input asp-for="InventFactura.Email" class="form-control" />
-                    <span asp-validation-for="InventFactura.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="InventFactura.Telefono" class="control-label"></label>
-                    <input asp-for="InventFactura.Telefono" class="form-control" />
-                    <span asp-validation-for="InventFactura.Telefono" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="InventFactura.Direccion" class="control-label"></label>
-                    <input asp-for="InventFactura.Direccion" class="form-control" />
-                    <span asp-validation-for="InventFactura.Direccion" class="text-danger"></span>
-                </div>*@
-                <table id="encabezado" class="table">
-                    <tr style="font-size:15px;">
-                        <th>
+                                <label asp-for="InventFactura.Total" class="control-label"></label>
+                                <input asp-for="InventFactura.Total" class="form-control" id="TotalFinal" readonly />
+                                <span asp-validation-for="InventFactura.Total" class="text-danger"></span>
+                            <th>
+                    </table>
+                    @*<div class="form-control">
                             <label asp-for="InventFactura.Subtotal" class="control-label"></label>
-                            <input asp-for="InventFactura.Subtotal" class="form-control" id="SubTotal" readonly />
+                            <input asp-for="InventFactura.Subtotal" class="form-control" />
                             <span asp-validation-for="InventFactura.Subtotal" class="text-danger"></span>
-                        <th>
-                        <th>
-
+                        </div>*@
+                    @*<div class="form-group">
                             <label asp-for="InventFactura.Descuento" class="control-label"></label>
-                            <input asp-for="InventFactura.Descuento" class="form-control" id="DescuentoTotal" readonly />
+                            <input asp-for="InventFactura.Descuento" class="form-control" />
                             <span asp-validation-for="InventFactura.Descuento" class="text-danger"></span>
-                        <th>
-                        <th>
-
+                        </div>
+                        <div class="form-group">
                             <label asp-for="InventFactura.Impuesto" class="control-label"></label>
-                            <input asp-for="InventFactura.Impuesto" class="form-control" id="ImpuestoTotal" readonly />
+                            <input asp-for="InventFactura.Impuesto" class="form-control" />
                             <span asp-validation-for="InventFactura.Impuesto" class="text-danger"></span>
-                        <th>
-                        <th>
-
+                        </div>
+                        <div class="form-group">
                             <label asp-for="InventFactura.Total" class="control-label"></label>
-                            <input asp-for="InventFactura.Total" class="form-control" id="TotalFinal" readonly />
+                            <input asp-for="InventFactura.Total" class="form-control" />
                             <span asp-validation-for="InventFactura.Total" class="text-danger"></span>
-                        <th>
-                </table>
-                @*<div class="form-control">
-                    <label asp-for="InventFactura.Subtotal" class="control-label"></label>
-                    <input asp-for="InventFactura.Subtotal" class="form-control" />
-                    <span asp-validation-for="InventFactura.Subtotal" class="text-danger"></span>
-                </div>*@
-                @*<div class="form-group">
-                    <label asp-for="InventFactura.Descuento" class="control-label"></label>
-                    <input asp-for="InventFactura.Descuento" class="form-control" />
-                    <span asp-validation-for="InventFactura.Descuento" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="InventFactura.Impuesto" class="control-label"></label>
-                    <input asp-for="InventFactura.Impuesto" class="form-control" />
-                    <span asp-validation-for="InventFactura.Impuesto" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="InventFactura.Total" class="control-label"></label>
-                    <input asp-for="InventFactura.Total" class="form-control" />
-                    <span asp-validation-for="InventFactura.Total" class="text-danger"></span>
-                </div>*@
-                @*<div class="form-group">
-                    <label asp-for="InventFactura.CreadoPor" class="control-label"></label>
-                    <input asp-for="InventFactura.CreadoPor" class="form-control" />
-                    <span asp-validation-for="InventFactura.CreadoPor" class="text-danger"></span>
-                </div>*@
-                @*<div class="form-group">
-                    <label asp-for="InventFactura.CreadoFecha" class="control-label"></label>
-                    <input asp-for="InventFactura.CreadoFecha" class="form-control" />
-                    <span asp-validation-for="InventFactura.CreadoFecha" class="text-danger"></span>
-                </div>*@
-                @*<div class="form-group">*@
-                @*<label asp-for="InventFactura.FormaPago" class="control-label"></label>
-                <input asp-for="InventFactura.FormaPago" class="form-control" />
-                <span asp-validation-for="InventFactura.FormaPago" class="text-danger"></span>*@
-                @*<label asp-for="InventFactura.FormaPago" class="control-label"></label>
-                    <select asp-for="InventFactura.FormaPago" class="form-control">
-                        <option>Efectivo</option>
-                        <option>Tarjeta</option>
-                        <option>Transferencia</option>
-                    </select>
-                </div>*@
+                        </div>*@
+                    @*<div class="form-group">
+                            <label asp-for="InventFactura.CreadoPor" class="control-label"></label>
+                            <input asp-for="InventFactura.CreadoPor" class="form-control" />
+                            <span asp-validation-for="InventFactura.CreadoPor" class="text-danger"></span>
+                        </div>*@
+                    @*<div class="form-group">
+                            <label asp-for="InventFactura.CreadoFecha" class="control-label"></label>
+                            <input asp-for="InventFactura.CreadoFecha" class="form-control" />
+                            <span asp-validation-for="InventFactura.CreadoFecha" class="text-danger"></span>
+                        </div>*@
+                    @*<div class="form-group">*@
+                    @*<label asp-for="InventFactura.FormaPago" class="control-label"></label>
+                        <input asp-for="InventFactura.FormaPago" class="form-control" />
+                        <span asp-validation-for="InventFactura.FormaPago" class="text-danger"></span>*@
+                    @*<label asp-for="InventFactura.FormaPago" class="control-label"></label>
+                            <select asp-for="InventFactura.FormaPago" class="form-control">
+                                <option>Efectivo</option>
+                                <option>Tarjeta</option>
+                                <option>Transferencia</option>
+                            </select>
+                        </div>*@
 
-                @*<head>
-                    <meta charset="utf-8">
-                    <meta name="viewport" content="width=device-width">
-                    <title>JS Bin</title>
-                </head>*@
+                    @*<head>
+                            <meta charset="utf-8">
+                            <meta name="viewport" content="width=device-width">
+                            <title>JS Bin</title>
+                        </head>*@
 
 
 
 
-                @*<div class="form-group">
-                    <input type="submit" value="Guardar" class="btn btn-default" />
-                </div>*@
+                    @*<div class="form-group">
+                            <input type="submit" value="Guardar" class="btn btn-default" />
+                        </div>*@
 
-        </div>
+            </div>
             @*</div>*@
-            @*<script>
 
-                         function addPerson(e) {
-                             e.preventDefault();
-                             const row = createRow({
-                                 Articulo: $('#Articulo').val(),
-                                 Nombre: $('#Nombre').val(),
-                                 Cantidad: $('#Cantidad').val(),
-                                  PrecioUnitario: $('#PrecioUnitario').val(),
-                                 PrecioTotal: $('#PrecioTotal').val(),
-                                 Descuento: $('#Descuento').val(),
-                                 Impuesto: $('#Impuesto').val(),
-                                 TotalLinea: $('#TotalLinea').val()
-
-                             });
-                             $('table tbody').append(row);
-                             clean();
-
-                         }
-
-                         function createRow(data) {
-                             return (
-                                 `<tr>` +
-                                 `<td>${data.Articulo}</td>` +
-                                 `<td>${data.Nombre}</td>` +
-                                 `<td>${data.Cantidad}</td>` +
-                                 `<td>${data.PrecioUnitario}</td>` +
-                                 `<td>${data.PrecioTotal}</td>` +
-                                 `<td>${data.Descuento}</td>` +
-                                 `<td>${data.Impuesto}</td>` +
-                                 `<td>${data.TotalLinea}</td>` +
-                                 `</tr>`
-
-                                  );
-                         }
-                         function remove() {
-                             var row = this.parentNode.parentNode;
-                             document.querySelector('#target tbody')
-                                 .removeChild(row);
-                         }
-                         function createRemoveBtn() {
-                             var btnRemove = document.createElement('button');
-                             btnRemove.className = 'btn btn-xs btn-danger';
-                             btnRemove.onclick = remove;
-                             btnRemove.innerText = 'Descartar';
-                             return btnRemove;
-                         }
-
-                         function clean() {
-                             $('#Articulo').val('');
-                             $('#Nombre').val('');
-                             $('#Cantidad').val('');
-                             $('#PrecioUnitario').val('');
-                             $('#PrecioTotal').val('');
-                             $('#Descuento').val('');
-                             $('#Impuesto').val('');
-                             $('#TotalLinea').val('');
-                             $('#Articulo').focus();
-                        }
-                </script>*@
-            <script>
-                $(document).ready(function () {
-                    $("#txtnueva").click(function () {
-                        $.ajax({
-                            success: function (res) {
-                                //alertify.alert("exito");
-                                window.location.reload().ajax();
-                            }
-                        });
-                    });
-                });
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $("#btnarticulo").click(function () {
-                        $.ajax({
-                            type: "POST",
-                            url: "Seleccionar",
-                            data: { idProducto: $("#ListaArticulo").val() },
-                            success: function (mensaje) {
-                                //alert(mensaje);
-                                //$("#idproducto").val(mensaje.Nombre);
-                                $(mensaje).each(function (index, item) {
-                                    //recibir datos json
-                                    $("#Nombre").val(item.Nombre),
-                                        $("#PrecioVenta").val(item.PrecioVenta)
-                                       
-                                });
-                            }
-                        });
-                    });
-                });
-
-            </script>
             @*<div>*@
             @*<a asp-page="Index">Back to List</a>*@
         </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

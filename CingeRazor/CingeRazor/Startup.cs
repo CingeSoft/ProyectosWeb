@@ -46,6 +46,7 @@ namespace CingeRazor
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
                 options.Cookie.Expiration = TimeSpan.FromMinutes(5);
             });
+            
             services.AddMvc().AddRazorPagesOptions(options =>
             {
                 options.Conventions.AuthorizeFolder("/");
