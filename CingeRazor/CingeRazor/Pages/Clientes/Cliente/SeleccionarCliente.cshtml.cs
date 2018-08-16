@@ -31,7 +31,7 @@ namespace CingeRazor.Pages.Clientes.Cliente
             public string Email { get; set; }
             public DateTime FechaCreacíon { get; set; }
             public string CódigoZona { get; set; }
-
+            public string[] NombreMascota { get; set; }
         }
 
         public JsonResult OnGet(string idCliente)
@@ -39,6 +39,9 @@ namespace CingeRazor.Pages.Clientes.Cliente
             Models.Clientes Clientes = _context.Clientes
                 .Include(c => c.CódigoCédulaNavigation)
                 .Include(c => c.CódigoZonaNavigation).FirstOrDefault(m => m.Código == idCliente);
+
+            IList<Mascotas> MascotaList = _context.Mascotas
+                .Include(m => m.CódigoNavigation).Where(x => x.Código == idCliente).ToList();
 
             ClienteSeleccionado seleccionado = new ClienteSeleccionado();
 
@@ -53,6 +56,14 @@ namespace CingeRazor.Pages.Clientes.Cliente
             seleccionado.Email = Clientes.Email;
             seleccionado.FechaCreacíon = Clientes.FechaCreacíon;
             seleccionado.CódigoZona = Clientes.CódigoZona;
+
+            seleccionado.NombreMascota = new string[MascotaList.Count];
+            int contador = 0;
+            foreach (Mascotas mascota in MascotaList)
+            {
+                seleccionado.NombreMascota[contador] = mascota.Nombre;
+                ++contador;
+            }
 
             JsonResult resultado = new JsonResult(seleccionado);
 
