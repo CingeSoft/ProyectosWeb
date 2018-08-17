@@ -44,8 +44,11 @@ namespace CingeRazor.Pages.Clientes.Cliente
                 .Include(m => m.CódigoNavigation).Where(x => x.Código == idCliente).ToList();
 
             ClienteSeleccionado seleccionado = new ClienteSeleccionado();
+             if (Clientes != null)
+            {
 
-            seleccionado.Código = Clientes.Código;
+
+                seleccionado.Código = Clientes.Código;
             seleccionado.Nombre = Clientes.Nombre;
             seleccionado.Localidad = Clientes.Localidad;
             seleccionado.CódigoCédula = Clientes.CódigoCédula;
@@ -64,7 +67,7 @@ namespace CingeRazor.Pages.Clientes.Cliente
                 seleccionado.NombreMascota[contador] = mascota.Nombre;
                 ++contador;
             }
-
+            }
             JsonResult resultado = new JsonResult(seleccionado);
 
             return resultado;

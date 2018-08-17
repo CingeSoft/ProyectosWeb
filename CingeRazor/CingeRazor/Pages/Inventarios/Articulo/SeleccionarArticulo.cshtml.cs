@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,7 +39,9 @@ namespace CingeRazor.Pages.Inventarios.Articulo
                 .Include(a => a.TipoArticuloNavigation).FirstOrDefault(m => m.Código == idProducto);
 
             ArticuloSeleccionado seleccionado = new ArticuloSeleccionado();
-            seleccionado.Código = Articulos.Código;
+             if (Articulos != null)
+             {
+                seleccionado.Código = Articulos.Código;
             seleccionado.Nombre = Articulos.Nombre;
             seleccionado.TipoArticulo = Articulos.TipoArticulo;
             seleccionado.CódigoUnidad = Articulos.CódigoUnidad;
@@ -48,9 +51,12 @@ namespace CingeRazor.Pages.Inventarios.Articulo
             seleccionado.PagaImpuesto = Articulos.PagaImpuesto;
             seleccionado.FechaCreacíon = Articulos.FechaCreacíon;
 
+             }
+
             JsonResult resultado = new JsonResult(seleccionado);
 
             return resultado;
+            
         }
     }
 }

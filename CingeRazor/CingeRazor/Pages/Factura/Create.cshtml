@@ -1,9 +1,8 @@
 ﻿@page
 @model CingeRazor.Pages.Factura.CreateModel
 <script src="~/lib/jquery-3.3.1.min.js"></script>
-@*    <script src="~/lib/js/bootstrap.js"></script>
-    <link href="~/css/bootstrap.css" />*@
 <link href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
 
 @{
     ViewData["Title"] = "Create";
@@ -13,7 +12,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $("#codigoProducto").change(function () {
+        $("#codigoProducto").blur(function () {
             $.ajax({
                 type: "GET",
                 url: "/Inventarios/Articulo/SeleccionarArticulo",
@@ -28,19 +27,40 @@
                         switch (i) { 
                             case "nombre":
                                 $("#nombreproducto").val(item);
+                                if ($("#nombreproducto").val() == "") {
+                                    alert("El producto no existe");
+                                    $("#nombreproducto").prop("disabled", true);
+                                    $("#precio").prop("disabled", true);
+                                    document.getElementById('agregar').disabled = true;
+                                    document.getElementById('cantidad').disabled = true;
+                                    document.getElementById('precio').disabled = true;
+                                    document.getElementById('descuento').disabled = true;
+                                }
+                                else {
+                                    $("#nombreproducto").prop("disabled", false);
+                                    $("#precio").prop("disabled", false);
+                                    document.getElementById('agregar').disabled = false;
+                                    document.getElementById('cantidad').disabled = false;
+                                    document.getElementById('precio').disabled = false;
+                                    document.getElementById('descuento').disabled = false;
+                                }
                                 break;
                             case "precioVenta":
                                 $("#precio").val(item);
                                 break;
+                            case "pagaImpuesto":
+                                $("#paga").prop('checked', item);
+                                console.log($("#paga").prop('checked'));
+                                break;
                         }
-                        //recibir datos json
+                       
                     });
                 }
             });
         });
 
         $(document).ready(function () {
-            $("#codigoCliente").change(function () {
+            $("#codigoCliente").blur(function () { 
                 $.ajax({
                     type: "GET",
                     url: "/Clientes/Cliente/SeleccionarCliente",
@@ -55,6 +75,28 @@
                             switch (i) {
                                 case "nombre":
                                     $("#nombreCliente").val(item);
+
+                                    if ($("#nombreCliente").val() == "") {
+                                        alert("El cliente no existe");
+                                        $("#cédulaCliente").prop("disabled",true);
+                                        $("#emailCliente").prop("disabled", true);
+                                        $("#teléfonoCliente").prop("disabled", true);
+                                        $("#direcciónCliente").prop("disabled", true);
+                                        $("#tipoIdCliente").prop("disabled", true);
+                                        $("#nombreMascota").prop("disabled", true);
+                                        document.getElementById('agregar').disabled = true;
+                                        document.getElementById('guardar').disabled = true;
+                                    } 
+                                        else {
+                                        $("#cédulaCliente").prop("disabled", false);
+                                        $("#emailCliente").prop("disabled", false);
+                                        $("#teléfonoCliente").prop("disabled", false);
+                                        $("#direcciónCliente").prop("disabled", false);
+                                        $("#tipoIdCliente").prop("disabled", false);
+                                        $("#nombreMascota").prop("disabled", false);                                                                                          
+                                        document.getElementById('agregar').disabled = false;
+                                        document.getElementById('guardar').disabled = false;
+                                    }
                                     break;
                                 case "cédula":
                                     $("#cédulaCliente").val(item);
@@ -79,17 +121,17 @@
                                         cadena += mascota;
                                         cadena += "</option >";
                                         $("#nombreMascota").append(cadena);
-                                       
+
                                     });
                                     break;
-                                
                             }
-                            //recibir datos json
+                            
                         });
                     }
                 });
-            });
+          });
         });
+    
         $(document).ready(function () {
             $("#codigoMascota").change(function () {
                 $.ajax({
@@ -110,7 +152,7 @@
                                     break;
                                
                             }
-                            //recibir datos json
+                            
                         });
                     }
                 });
@@ -124,8 +166,7 @@
         });
 
         $("#finalizar").click(function () {
-            //alertify.alert("Boton Iniciado");
-            //console.info('hola');
+           
             var i = 0;
             var envio = "{Fecha:'" + $("#id_fecha").val() + "',ModoPago:'" + $("#modoPago").val() + "',IdCliente:'" + $("#codigoCliente").val() + "',IdCabecera:'2',Total:'" + $('#TotalaPagar').val() + "',";
             $("#detalle tbody tr").each(function (index) {
@@ -153,38 +194,34 @@
     var valor = 0;
     var subtotal = 0;
     function obtenerCliente(Cliente) {
-        $("#codigoCliente").val(Cliente.Codigo).trigger('change');
+        $("#codigoCliente").val(Cliente.Codigo).trigger('blur');
     }
     function obtenerProducto(Articulo) {
-        $("#codigoProducto").val(Articulo.Codigo).trigger('change');
+        $("#codigoProducto").val(Articulo.Codigo).trigger('blur');
        
     }
-    function obtenerMascota(Mascota) {
-        $("#codigoMascota").val(Mascota.Codigo).trigger('change');
-        
-    }
     function fn_agregar() {
-
         cadena = "<tr>"
         cadena = cadena + "<td>" + $("#nombreMascota").val() + "</td>";
         cadena = cadena + "<td>" + $("#codigoProducto").val() + "</td>";
         cadena = cadena + "<td>" + $("#nombreproducto").val() + "</td>";
         cadena = cadena + "<td>" + $("#cantidad").val() + "</td>";
         cadena = cadena + "<td>" + $("#precio").val() + "</td>";
-
-
         var y = 0;
         var x = 0;
         var descuento = 0;
         var totallinea = 0;
         y = $("#cantidad").val();
         x = $("#precio").val();
-
         subtotal = (x * y).toFixed(5);
         descuento = ($("#precio").val() * ($("#descuento").val() / 100)).toFixed(5);
-        impuesto = (subtotal * 0.13).toFixed(5);
-        totallinea = (parseFloat(subtotal) - parseFloat(descuento) + parseFloat(impuesto)).toFixed(5);
-
+        if ($("#paga").prop('checked')) {
+            impuesto = (subtotal * 0.13).toFixed(5);
+           
+        } else {
+            impuesto = 0;
+        }
+        totallinea = (parseFloat(subtotal) - parseFloat(descuento) + parseFloat(impuesto)).toFixed(5);               
         cadena = cadena + "<td>" + subtotal + "</td>"
         cadena = cadena + "<td>" + descuento + "</td>";
         cadena = cadena + "<td>" + impuesto + "</td>";
@@ -195,6 +232,7 @@
         fn_dar_eliminar();
         limpiar();
     };
+
     function limpiar() {
         $("#codigoProducto").val("");
         $("#nombreproducto").val("");
@@ -202,11 +240,13 @@
         $("#cantidad").val("1");
         $("#descuento").val("0");
     }
+
     function limpiarCliente() {
         $("tbody tr #txtnombre").val('');
         $("tbody tr #idCliente").val('');
         $("tbody tr #codigoCliente").val('');
     }
+
     function limpiarDetalle() {
         $("#detalle tbody tr").val("");
     }
@@ -218,14 +258,13 @@
         descuentoTotal = 0;
         impuestoTotal = 0;
         totalFinal = 0;
-
         var columnNames = [];
-
-        $('#detalle').find('th').each(function () {
+                $('#detalle').find('th').each(function () {
             columnNames.push($(this).text().trim());
         });
 
         $("#detalle tbody tr").each(function (index) {
+                      
             precio = parseFloat($(this).find('td').eq(columnNames.indexOf("PrecioTotal")).text());
             precioTotal = precioTotal + precio;
             descuento = parseFloat($(this).find('td').eq(columnNames.indexOf("Descuento")).text());
@@ -252,8 +291,8 @@
             });
         });
     };
+
     function filterFloat(evt, input) {
-        // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
         var key = window.Event ? evt.which : evt.keyCode;
         var chark = String.fromCharCode(key);
         var tempValue = input.value + chark;
@@ -277,6 +316,7 @@
             }
         }
     }
+
     function filter(__val__) {
         var preg = /^([0-9]+\.?[0-9]{0,1})$/;
         if (preg.test(__val__) === true) {
@@ -286,15 +326,13 @@
         }
 
     }
-
-</script>
+   </script>
 
 <h3>Facturación</h3>
 
 <hr />
 <div class="row">
     <div class="form-inline">
-
 
         <table id="encabezado" class="table">
             <tr style="font-size:15px;">
@@ -314,25 +352,16 @@
                 </th>
                 <td>
                     <a href="~/Factura/ObtenerCliente" rel="pop-up" target="_blank">
-                        <input class="btn btn-warning btn-lg col-md-12" type="button" name="enlace_cliente" value="Obtener Cliente" />
+                        <input class="btn btn-warning btn-lg col-md-12" type="button" name="enlace_cliente" value="Obtener Clientes" />
                     </a>
                 </td>
         </table>
         <table id="encabezado" class="table">
             <tr style="font-size:15px;">
 
-                @*<th>
-                    <label asp-for="InventFactura.Consecutivo" class="control-label"></label>
-                    <input asp-for="InventFactura.Consecutivo" class="form-control" />
-                </th>
-                <th>
-                    <label asp-for="InventFactura.Fecha" class="control-label"></label>
-                    <input asp-for="InventFactura.Fecha" class="form-control" />
-                </th>*@
-
                 <th>
                     <label asp-for="InventFactura.Nombre" class="control-label"></label>
-                    <input asp-for="InventFactura.Nombre" class="form-control" id="nombreCliente" />
+                    <input asp-for="InventFactura.Nombre" class="form-control" name="nombreCliente" id="nombreCliente" />
                     <span asp-validation-for="InventFactura.Nombre" class="text-danger"></span>
                 </th>
                 <th>
@@ -371,7 +400,6 @@
                         <option>Transferencia</option>
                     </select>
                 </th>
-
                 <td>
 
                 <td>
@@ -381,7 +409,7 @@
                 </td>
             </tr>
         </table>
-       
+
         <h3>Detalle Facturación </h3>
         <form action="javascript:fn_agregar()" ; method="post" id="frm_usu" class="form-horizontal">
             <table class="table">
@@ -391,12 +419,10 @@
                     <td>Nombre<input style="font-size:12px; font-weight:700;" class="form-control" type="text" id="nombreproducto" required /></td>
                     <td>Cantidad <input style="font-size:12px; font-weight:700;" class="form-control" type="text" id="cantidad" value="1" onkeypress="return filterFloat(event,this);" required /></td>
                     <td>PrecioUnitario <input style="font-size:10px; font-weight:700;" class="form-control" type="text" id="precio" onkeypress="return filterFloat(event,this);" required /></td>
-                   <td>Descuento <input style="font-size:12px; font-weight:700;" class="form-control" type="text" id="descuento" value="0" min="0" onkeypress="return filterFloat(event,this);" required /></td>
-                                  
-                    @*<select id="nombreMascota" class="form-control">
-                        <option>Seleccione una Mascota...</option>
-                    </select>*@
-                    <td>Mascota<select class="form-control" id="nombreMascota" required ></select></td>
+                    <td>Descuento <input style="font-size:12px; font-weight:700;" class="form-control" type="text" id="descuento" value="0" min="0" onkeypress="return filterFloat(event,this);" required /></td>
+
+                    <td>Mascota<select class="form-control" id="nombreMascota" required></select></td>
+                    <td>P.Imp <input style="font-size:12px; font-weight:700;" class="form-control" type="checkbox" id="paga" disabled /></td>
                     <td colspan="2"><input class="form-control" type="submit" name="agregar" id="agregar" value="Agregar" /></td>
                 </tr>
             </table>
@@ -419,58 +445,7 @@
             <tbody></tbody>
 
         </table>
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width">
-            <title>JS Bin</title>
-        </head>
-        @*<body>
 
-        </table>*@
-        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        @*<div class="form-group">
-            <label asp-for="InventFactura.Consecutivo" class="control-label"></label>
-            <input asp-for="InventFactura.Consecutivo" class="form-control" />
-            <span asp-validation-for="InventFactura.Consecutivo" class="text-danger"></span>
-        </div>
-        <div class="form-horizontal">
-            <label asp-for="InventFactura.Fecha" class="control-label"></label>
-            <input asp-for="InventFactura.Fecha" class="form-control" />
-            <span asp-validation-for="InventFactura.Fecha" class="text-danger"></span>
-        </div>
-        <div class="">
-            <label asp-for="InventFactura.Cliente" class="control-label"></label>
-            <select asp-for="InventFactura.Cliente" class="form-control" asp-items="ViewBag.Cliente"></select>
-        </div>
-        <div class="form-group">
-            <label asp-for="InventFactura.Nombre" class="control-label"></label>
-            <input asp-for="InventFactura.Nombre" class="form-control" />
-            <span asp-validation-for="InventFactura.Nombre" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="InventFactura.TipoIdentificacion" class="control-label"></label>
-            <select asp-for="InventFactura.TipoIdentificacion" class="form-control" asp-items="ViewBag.TipoIdentificacion"></select>
-        </div>
-        <div class="form-group">
-            <label asp-for="InventFactura.Identificacion" class="control-label"></label>
-            <input asp-for="InventFactura.Identificacion" class="form-control" />
-            <span asp-validation-for="InventFactura.Identificacion" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="InventFactura.Email" class="control-label"></label>
-            <input asp-for="InventFactura.Email" class="form-control" />
-            <span asp-validation-for="InventFactura.Email" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="InventFactura.Telefono" class="control-label"></label>
-            <input asp-for="InventFactura.Telefono" class="form-control" />
-            <span asp-validation-for="InventFactura.Telefono" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="InventFactura.Direccion" class="control-label"></label>
-            <input asp-for="InventFactura.Direccion" class="form-control" />
-            <span asp-validation-for="InventFactura.Direccion" class="text-danger"></span>
-        </div>*@
         <table id="encabezado" class="table">
             <tr style="font-size:15px;">
                 <th>
@@ -496,67 +471,13 @@
                     <input asp-for="InventFactura.Total" class="form-control" id="TotalFinal" readonly />
                     <span asp-validation-for="InventFactura.Total" class="text-danger"></span>
                 <th>
+
         </table>
-        @*<div class="form-control">
-            <label asp-for="InventFactura.Subtotal" class="control-label"></label>
-            <input asp-for="InventFactura.Subtotal" class="form-control" />
-            <span asp-validation-for="InventFactura.Subtotal" class="text-danger"></span>
-        </div>*@
-        @*<div class="form-group">
-            <label asp-for="InventFactura.Descuento" class="control-label"></label>
-            <input asp-for="InventFactura.Descuento" class="form-control" />
-            <span asp-validation-for="InventFactura.Descuento" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="InventFactura.Impuesto" class="control-label"></label>
-            <input asp-for="InventFactura.Impuesto" class="form-control" />
-            <span asp-validation-for="InventFactura.Impuesto" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="InventFactura.Total" class="control-label"></label>
-            <input asp-for="InventFactura.Total" class="form-control" />
-            <span asp-validation-for="InventFactura.Total" class="text-danger"></span>
-        </div>*@
-        @*<div class="form-group">
-            <label asp-for="InventFactura.CreadoPor" class="control-label"></label>
-            <input asp-for="InventFactura.CreadoPor" class="form-control" />
-            <span asp-validation-for="InventFactura.CreadoPor" class="text-danger"></span>
-        </div>*@
-        @*<div class="form-group">
-            <label asp-for="InventFactura.CreadoFecha" class="control-label"></label>
-            <input asp-for="InventFactura.CreadoFecha" class="form-control" />
-            <span asp-validation-for="InventFactura.CreadoFecha" class="text-danger"></span>
-        </div>*@
-        @*<div class="form-group">*@
-        @*<label asp-for="InventFactura.FormaPago" class="control-label"></label>
-        <input asp-for="InventFactura.FormaPago" class="form-control" />
-        <span asp-validation-for="InventFactura.FormaPago" class="text-danger"></span>*@
-        @*<label asp-for="InventFactura.FormaPago" class="control-label"></label>
-            <select asp-for="InventFactura.FormaPago" class="form-control">
-                <option>Efectivo</option>
-                <option>Tarjeta</option>
-                <option>Transferencia</option>
-            </select>
-        </div>*@
-
-        @*<head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width">
-            <title>JS Bin</title>
-        </head>*@
-
-
-
-
-        @*<div class="form-group">
-            <input type="submit" value="Guardar" class="btn btn-default" />
-        </div>*@
+        <input class="btn btn-warning" id="guardar" type="button" value="Guardar" />
 
     </div>
-            @*</div>*@
-
-            @*<div>*@
-            @*<a asp-page="Index">Back to List</a>*@
+           
+          
         </div>
 
         @section Scripts {
